@@ -5,11 +5,15 @@ function Search() {
   const [searchPhrase, setSearchPhrase] = useState("");
 
   return (
-    <input
-      placeholder="Поиск..."
-      value={searchPhrase}
-      onChange={(event) => setSearchPhrase(event.target.value)}
-    />
+    <div className={styles.search_panel}>
+      <input
+        placeholder="Поиск..."
+        className={styles.search}
+        value={searchPhrase}
+        onChange={(event) => setSearchPhrase(event.target.value)}
+      />
+      <button>Поиск</button>
+    </div>
   );
 }
 

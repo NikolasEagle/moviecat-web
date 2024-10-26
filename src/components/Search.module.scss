@@ -1,4 +1,14 @@
-input {
+.search_panel {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 20px;
+
+}
+
+.search {
 
     padding: 20px;
 
@@ -14,7 +24,7 @@ input {
 
     color: white;
 
-    width: 80%;
+    width: 600px;
 
     transition: 1s;
 
