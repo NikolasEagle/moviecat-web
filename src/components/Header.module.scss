@@ -1,0 +1,21 @@
+@keyframes blur {
+
+    from {
+
+        text-shadow: 0 0 15px cyan;
+
+    } to {
+
+        text-shadow: 0 0 25px cyan;
+
+    }
+    
+}
+
+h1 {
+
+    color: cyan;
+
+    animation: 2s infinite alternate blur ease-in-out;
+
+}
