@@ -17,7 +17,7 @@ function Search() {
         value={searchPhrase}
         onChange={(event) => setSearchPhrase(event.target.value)}
       />
-      <button onClick={search}>Поиск</button>
+      <button className={styles.search_button} onClick={search}></button>
     </div>
   );
 }

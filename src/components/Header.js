@@ -1,4 +1,4 @@
-import styles from "./Header.module.scss";
+import "./Header.module.scss";
 
 function Header() {
   return <h1>MovieCat</h1>;

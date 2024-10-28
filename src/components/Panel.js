@@ -6,14 +6,21 @@ function Panel() {
   const [films, setFilms] = useState("");
 
   useEffect(() => {
-    fetch("/api/")
+    fetch("/api/films/")
       .then((response) => response.json())
       .then((body) => {
         setFilms(
           body.data.map((film) => (
-            <div className={styles.card} id={film["id"]}>
-              {film["name_russian"]}
-            </div>
+            <div
+              style={{
+                background: `url(${film.small_poster})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+              className={styles.card}
+              id={film["id"]}
+            ></div>
           ))
         );
       })
