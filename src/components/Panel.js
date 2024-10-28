@@ -1,5 +1,9 @@
 import styles from "./Panel.module.scss";
 
+import Download from "./Download";
+
+import Card from "./Card";
+
 import { useState, useEffect } from "react";
 
 function Panel() {
@@ -9,25 +13,12 @@ function Panel() {
     fetch("/api/films/")
       .then((response) => response.json())
       .then((body) => {
-        setFilms(
-          body.data.map((film) => (
-            <div
-              style={{
-                background: `url(${film.small_poster})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
-              className={styles.card}
-              id={film["id"]}
-            ></div>
-          ))
-        );
+        setFilms(body.data.map((film) => <Card film={film} />));
       })
-      .catch((err) => setFilms(<div>Не найдено</div>));
-  }, []);
+      .catch((err) => console.log(err));
+  }, [films]);
 
-  return <div className={styles.panel}>{films}</div>;
+  return <div className={styles.panel}>{films ? films : <Download />}</div>;
 }
 
 export default Panel;

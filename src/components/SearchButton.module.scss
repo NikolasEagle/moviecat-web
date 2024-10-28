@@ -1,0 +1,17 @@
+.search_button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 20px 30px;
+  background-image: url(search.svg);
+  background-color: cyan;
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: 0 0 15px cyan;
+    transform: scale(1.05);
+  }
+}

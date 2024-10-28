@@ -1,0 +1,33 @@
+.search {
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  outline: none;
+
+  background: none;
+
+  border-radius: 10px;
+
+  border: 2px solid #555;
+
+  color: white;
+
+  width: 90%;
+
+  transition: 0.5s;
+
+  font-size: 15px;
+
+  &:focus {
+    box-shadow: 0 0 25px cyan;
+  }
+
+  &::placeholder {
+    font-size: 15px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 25px cyan;
+  }
+}
