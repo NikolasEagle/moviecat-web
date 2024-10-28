@@ -1,24 +1,23 @@
 import styles from "./Panel.module.scss";
 
 import Download from "./Download";
-
-import Card from "./Card";
-
-import { useState, useEffect } from "react";
+import { FilmsContext } from "../App";
+import { useContext, useEffect } from "react";
 
 function Panel() {
-  const [films, setFilms] = useState("");
+  const context = useContext(FilmsContext);
+
+  console.log(context);
 
   useEffect(() => {
-    fetch("/api/films/")
-      .then((response) => response.json())
-      .then((body) => {
-        setFilms(body.data.map((film) => <Card film={film} />));
-      })
-      .catch((err) => console.log(err));
-  }, [films]);
+    context.callAPI(1);
+  }, []);
 
-  return <div className={styles.panel}>{films ? films : <Download />}</div>;
+  return (
+    <div className={styles.panel}>
+      {context.films ? context.films : <Download />}
+    </div>
+  );
 }
 
 export default Panel;

@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styles from "./SearchField.module.scss";
 
+import { FilmsContext } from "../App";
+
 function SearchField() {
-  const [searchPhrase, setSearchPhrase] = useState("");
+  const context = useContext(FilmsContext);
 
   return (
     <input
       placeholder="Поиск..."
       className={styles.search}
-      value={searchPhrase}
-      onChange={(event) => setSearchPhrase(event.target.value)}
+      value={context.searchPhrase}
+      onChange={(event) => {
+        context.setSearchPhrase(event.target.value);
+      }}
     />
   );
 }
