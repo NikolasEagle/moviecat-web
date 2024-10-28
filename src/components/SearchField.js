@@ -10,9 +10,13 @@ function SearchField() {
     <input
       placeholder="Поиск..."
       className={styles.search}
-      value={context.searchPhrase}
       onChange={(event) => {
         context.setSearchPhrase(event.target.value);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter") {
+          context.callAPI(1, context.searchPhrase);
+        }
       }}
     />
   );

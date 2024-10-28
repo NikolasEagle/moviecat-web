@@ -22,7 +22,7 @@ function App() {
     let url;
 
     if (search) {
-      url = `/api/films/search/${search}`;
+      url = `/api/films/search/${search.replace(" ", "_")}`;
     } else {
       url = `/api/films/${page}`;
     }
@@ -32,7 +32,11 @@ function App() {
 
       let body = await response.json();
 
-      setFilms(body.data.map((film) => <Card film={film} />));
+      if (!body.data.length) {
+        setFilms(<div>Не найдено результатов по запросу "{search}"</div>);
+      } else {
+        setFilms(body.data.map((film) => <Card film={film} />));
+      }
     } catch (error) {
       setFilms(<div>Не найдено</div>);
     }
