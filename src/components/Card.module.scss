@@ -1,3 +1,16 @@
+@keyframes show {
+  from {
+    width: 80px;
+
+    height: 133px;
+  }
+  to {
+    width: 120px;
+
+    height: 180px;
+  }
+}
+
 .card {
   padding: 20px;
 
@@ -11,8 +24,39 @@
 
   transition: 0.5s;
 
-  &:hover {
+  display: flex;
+
+  justify-content: space-between;
+
+  flex-direction: column;
+
+  color: white;
+
+  &:hover,
+  &:focus {
     box-shadow: 0 0 15px cyan;
     transform: scale(1.1);
+    outline: none;
   }
+}
+
+.top_panel {
+  display: flex;
+
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.rating {
+  color: cyan;
+  text-align: center;
+}
+
+.year,
+.rating {
+  font-weight: bold;
+  background: black;
+  padding: 8px;
+  border-radius: 10px;
 }

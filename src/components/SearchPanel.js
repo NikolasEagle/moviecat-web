@@ -6,7 +6,7 @@ import SearchButton from "./SearchButton";
 
 function SearchPanel() {
   return (
-    <div className={styles.search}>
+    <div className={styles.search_panel}>
       <SearchField />
       <SearchButton />
     </div>
