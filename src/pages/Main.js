@@ -1,21 +1,25 @@
 import styles from "./Main.module.scss";
 
 import Header from "../components/main/Header.js";
+import SearchPanel from "../components/main/SearchPanel.js";
 import MovieCardsPanel from "../components/main/MovieCardsPanel.js";
 import MovieCard from "../components/main/MovieCard.js";
-import SearchPanel from "../components/main/SearchPanel.js";
-import NavigationBar from "../components/main/NavigationBar.js";
+import PageButtonsPanel from "../components/main/PageButtonsPanel.js";
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import MovieContext from "../contexts/MovieContext.js";
 
+import { useNavigate } from "react-router-dom";
+
 import Download from "../components/additional/Download.js";
 import NotFound from "../components/additional/NotFound.js";
 import Error from "../components/additional/Error.js";
 
 const Main = () => {
+  const navigate = useNavigate();
+
   let { page_id, query } = useParams();
 
   let [searchPhrase, setSearchPhrase] = useState("");
@@ -27,10 +31,15 @@ const Main = () => {
 
     let url;
 
+    console.log(query);
+
     if (query) {
+      query = query.replace(" ", "_");
       url = `/api/movies/search/${query}/pages/${page_id}`;
+      navigate(`/search/${query}/pages/${page_id}`);
     } else {
       url = `/api/movies/pages/${page_id}`;
+      navigate(`/pages/${page_id}`);
     }
 
     try {
@@ -40,8 +49,10 @@ const Main = () => {
 
       let data = body.data;
 
-      setMovieCards(
-        data.map((movie) => (
+      console.log(body.next_page_url);
+
+      setMovieCards([
+        ...data.map((movie) => (
           <MovieCard
             id={movie.id}
             year={movie.year}
@@ -49,8 +60,13 @@ const Main = () => {
             name={movie.name_russian || movie.name_original}
             poster={movie.small_poster || movie.big_poster || "/default.png"}
           />
-        ))
-      );
+        )),
+        <PageButtonsPanel
+          first_page={body.first_page_url}
+          prev_page={body.prev_page_url}
+          next_page={body.next_page_url}
+        />,
+      ]);
     } catch (error) {
       setMovieCards(<Error message={error.message} />);
     }
@@ -72,7 +88,6 @@ const Main = () => {
       >
         <SearchPanel />
         <MovieCardsPanel />
-        <NavigationBar />
       </MovieContext.Provider>
     </div>
   );

@@ -10,7 +10,9 @@ const SearchButton = () => {
   return (
     <button
       className={styles.search_button}
-      onClick={() => context.generatePage(1, context.searchPhrase)}
+      onClick={() => {
+        context.generatePage(1, context.searchPhrase);
+      }}
     ></button>
   );
 };

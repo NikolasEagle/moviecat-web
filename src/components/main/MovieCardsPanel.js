@@ -1,4 +1,4 @@
-import styles from "./Panel.module.scss";
+import styles from "./MovieCardsPanel.module.scss";
 
 import { useContext, useEffect } from "react";
 
