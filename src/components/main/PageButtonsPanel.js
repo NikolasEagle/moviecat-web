@@ -2,7 +2,7 @@ import styles from "./PageButtonsPanel.module.scss";
 
 import { useContext } from "react";
 
-import MovieContext from "../../contexts/MovieContext.js";
+import MovieContext from "../../contexts/MainContext.js";
 
 const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
   const context = useContext(MovieContext);

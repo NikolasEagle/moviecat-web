@@ -1,7 +1,7 @@
-import "./Header.module.scss";
+import styles from "./Header.module.scss";
 
 function Header() {
-  return <h1>MovieCat</h1>;
+  return <h1 className={styles.header}>MovieCat</h1>;
 }
 
 export default Header;

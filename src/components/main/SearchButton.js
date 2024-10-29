@@ -2,7 +2,7 @@ import styles from "./SearchButton.module.scss";
 
 import { useContext } from "react";
 
-import MovieContext from "../../contexts/MovieContext.js";
+import MovieContext from "../../contexts/MainContext.js";
 
 const SearchButton = () => {
   const context = useContext(MovieContext);

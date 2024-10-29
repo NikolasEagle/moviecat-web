@@ -2,7 +2,7 @@ import styles from "./SearchField.module.scss";
 
 import { useContext } from "react";
 
-import MovieContext from "../../contexts/MovieContext.js";
+import MovieContext from "../../contexts/MainContext.js";
 
 const SearchField = () => {
   const context = useContext(MovieContext);

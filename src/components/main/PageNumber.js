@@ -1,4 +1,8 @@
+import styles from "./PageNumber.module.scss";
+
 const PageNumber = ({ currentPage }) =>
-  currentPage ? <h2>Страница {currentPage}</h2> : null;
+  currentPage ? (
+    <h3 className={styles.page_number}>Страница {currentPage}</h3>
+  ) : null;
 
 export default PageNumber;

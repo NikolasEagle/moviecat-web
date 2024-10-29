@@ -1,16 +1,16 @@
 import "./App.module.scss";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main.js";
+import Movie from "./pages/Movie.js";
 
 const App = () => (
-  <Router>
-    <Routes>
-      <Route path="/pages/:page_id" element={<Main />}></Route>
-      <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
-    </Routes>
-  </Router>
+  <Routes>
+    <Route path="/pages/:page_id" element={<Main />}></Route>
+    <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
+    <Route path="/movies/:movie_id" element={<Movie />}></Route>
+  </Routes>
 );
 
 export default App;

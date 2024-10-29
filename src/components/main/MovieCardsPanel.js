@@ -2,7 +2,7 @@ import styles from "./MovieCardsPanel.module.scss";
 
 import { useContext, useEffect } from "react";
 
-import MovieContext from "../../contexts/MovieContext.js";
+import MovieContext from "../../contexts/MainContext.js";
 
 function MovieCardsPanel() {
   const context = useContext(MovieContext);
