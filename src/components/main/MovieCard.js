@@ -4,7 +4,7 @@ const MovieCard = ({ year, rating, name, poster }) => {
   return (
     <div
       style={{
-        background: poster,
+        background: `linear-gradient(to top, black, transparent), url(${poster})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",

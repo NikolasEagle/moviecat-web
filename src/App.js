@@ -7,7 +7,8 @@ import Main from "./pages/Main.js";
 const App = () => (
   <Router>
     <Routes>
-      <Route path="/:page_id" element={<Main />}></Route>
+      <Route path="/pages/:page_id" element={<Main />}></Route>
+      <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
     </Routes>
   </Router>
 );
