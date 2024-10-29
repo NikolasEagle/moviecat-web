@@ -1,7 +1,8 @@
-import { useContext } from "react";
 import styles from "./SearchField.module.scss";
 
-import { FilmsContext } from "../App";
+import { useContext } from "react";
+
+import { FilmsContext } from "../../App";
 
 function SearchField() {
   const context = useContext(FilmsContext);

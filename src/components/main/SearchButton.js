@@ -2,15 +2,15 @@ import styles from "./SearchButton.module.scss";
 
 import { useContext } from "react";
 
-import { FilmsContext } from "../App";
+import MovieContext from "../../contexts/MovieContext.js";
 
 function SearchButton() {
-  const context = useContext(FilmsContext);
-  console.log(context);
+  let context = useContext(FilmsContext);
+
   return (
     <button
       className={styles.search_button}
-      onClick={() => context.callAPI(1, context.searchPhrase)}
+      onClick={() => console.log()}
     ></button>
   );
 }

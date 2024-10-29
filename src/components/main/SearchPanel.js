@@ -4,13 +4,11 @@ import SearchField from "./SearchField";
 
 import SearchButton from "./SearchButton";
 
-function SearchPanel() {
-  return (
-    <div className={styles.search_panel}>
-      <SearchField />
-      <SearchButton />
-    </div>
-  );
-}
+const SearchPanel = () => (
+  <div className={styles.search_panel}>
+    <SearchField />
+    <SearchButton />
+  </div>
+);
 
 export default SearchPanel;
