@@ -1,32 +1,27 @@
-import styles from "./Card.module.scss";
+import styles from "./MovieCard.module.scss";
 
-function Card({ film }) {
+const MovieCard = ({ year, rating, name, poster }) => {
   return (
     <div
       style={{
-        background: film.small_poster
-          ? `linear-gradient(to top, black, transparent), url(${film.small_poster})`
-          : `linear-gradient(to top, black, transparent), url(default.png)`,
+        background: poster,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
       tabIndex={0}
       className={styles.card}
-      id={film["id"]}
     >
       <div className={styles.top_panel}>
-        <div className={styles.year}>{film.year}</div>
-        {film.rating_kp ? (
-          <div className={styles.rating}>{film.rating_kp}</div>
-        ) : (
-          ""
-        )}
+        <div className={styles.year}>{year}</div>
+        <div className={styles.rating} hidden={Boolean(!rating)}>
+          {rating}
+        </div>
       </div>
 
-      <div>{film.name_russian}</div>
+      <div>{name}</div>
     </div>
   );
-}
+};
 
-export default Card;
+export default MovieCard;
