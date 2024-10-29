@@ -1,0 +1,17 @@
+$size: 2.5;
+
+.poster {
+
+    padding: 20px;
+
+    img {
+
+        border-radius: 10px;
+
+        width: calc(120px * $size);
+
+        height: calc(180px * $size);
+
+    }
+
+}

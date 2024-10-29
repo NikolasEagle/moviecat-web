@@ -1,0 +1,97 @@
+.rating {
+
+    display: flex;
+
+    gap: 20px;
+
+    height: 60px;
+
+    align-items: center;
+
+}
+
+.age {
+
+    background: white;
+
+    border-radius: 10px;
+
+    color: black;
+
+    font-size: 28px;
+
+    width: max-content;
+
+    p {
+
+        margin: 10px 10px;
+
+    }
+
+}
+
+.kp {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    div {
+
+        background: url('./kp.svg');
+
+        width: 60px;
+
+        height: 60px;
+
+        background-repeat: no-repeat;
+
+        background-size: cover;
+
+    }
+
+    p {
+
+        font-size: 20px;
+
+        margin: 0;
+
+    }
+
+}
+
+.imdb {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    div {
+
+        background: url('./imdb.jpg');
+
+        width: 55px;
+
+        height: 55px;
+
+        background-repeat: no-repeat;
+
+        border-radius: 8px;
+
+        background-size: cover;
+
+    }
+
+    p {
+
+        font-size: 20px;
+
+        margin: 0;
+
+    }
+
+}

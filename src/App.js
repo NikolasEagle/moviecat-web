@@ -4,14 +4,19 @@ import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main.js";
 import Movie from "./pages/Movie.js";
+import { useState } from "react";
 
-const App = () => (
-  <Routes>
-    <Route path="/pages/:page_id" element={<Main />}></Route>
-    <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
-    <Route path="/movies/:movie_id" element={<Movie />}></Route>
-  </Routes>
-);
+const App = () => {
+  let [globalQuery, setGlobalQuery] = useState("");
+
+  return (
+    <Routes>
+      <Route path="/pages/:page_id" element={<Main />}></Route>
+      <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
+      <Route path="/movies/:movie_id" element={<Movie />}></Route>
+    </Routes>
+  );
+};
 
 export default App;
 

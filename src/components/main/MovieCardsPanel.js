@@ -2,10 +2,10 @@ import styles from "./MovieCardsPanel.module.scss";
 
 import { useContext, useEffect } from "react";
 
-import MovieContext from "../../contexts/MainContext.js";
+import MainContext from "../../contexts/MainContext.js";
 
 function MovieCardsPanel() {
-  const context = useContext(MovieContext);
+  const context = useContext(MainContext);
 
   useEffect(() => {
     context.generatePage(context.page_id, context.query);

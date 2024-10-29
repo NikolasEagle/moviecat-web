@@ -1,6 +1,10 @@
 import styles from "./MovieCard.module.scss";
 
-const MovieCard = ({ year, rating, name, poster }) => {
+import { useNavigate } from "react-router-dom";
+
+const MovieCard = ({ id, year, rating, name, poster }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -11,6 +15,7 @@ const MovieCard = ({ year, rating, name, poster }) => {
       }}
       tabIndex={0}
       className={styles.card}
+      onClick={() => navigate(`/movies/${id}`)}
     >
       <div className={styles.top_panel}>
         <div className={styles.year}>{year}</div>

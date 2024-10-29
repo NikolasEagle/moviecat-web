@@ -51,7 +51,7 @@ const Main = () => {
 
       if (data.length) {
         setMovieCards([
-          <ResultsInfo query={query} />,
+          <ResultsInfo query={query ? query.replace(/\_/g, " ") : null} />,
           <PageNumber currentPage={body.current_page} />,
           ...data.map((movie) => (
             <MovieCard
@@ -72,6 +72,7 @@ const Main = () => {
         setMovieCards(<NotFound query={query} />);
       }
     } catch (error) {
+      console.log(error.message);
       setMovieCards(<Error message={error.message} />);
     }
   }

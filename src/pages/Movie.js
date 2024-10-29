@@ -1,15 +1,21 @@
+import styles from "./Movie.module.scss";
+
 import { useEffect, useState } from "react";
+
+import Poster from "../components/movie/Poster.js";
+import Info from "../components/movie/Info.js";
 
 import MovieContext from "../contexts/MovieContext.js";
 
 import { useParams } from "react-router-dom";
 
 import Error from "../components/additional/Error";
+import Download from "../components/additional/Download.js";
 
 const Movie = () => {
   let { movie_id } = useParams();
 
-  let [title, setTitle] = useState("");
+  let [movieData, setMovieData] = useState("");
 
   useEffect(() => {
     generatePage();
@@ -23,18 +29,23 @@ const Movie = () => {
 
       let body = await response.json();
 
-      setTitle(body.name_russian);
+      setMovieData(body);
     } catch (error) {
-      setTitle(<Error message={error.message} />);
+      setMovieData(<Error message={error.message} />);
     }
   }
 
   return (
-    <div>
-      <MovieContext.Provider value={{ title }}>
-        <h1>{title}</h1>
-      </MovieContext.Provider>
-    </div>
+    <MovieContext.Provider value={movieData}>
+      {movieData ? (
+        <div className={styles.top_panel}>
+          <Poster />
+          <Info />
+        </div>
+      ) : (
+        <Download />
+      )}
+    </MovieContext.Provider>
   );
 };
 
