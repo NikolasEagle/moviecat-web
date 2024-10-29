@@ -6,7 +6,7 @@ import SearchPanel from "../components/main/SearchPanel.js";
 import NavigationBar from "../components/main/NavigationBar.js";
 
 import { useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import MovieContext from "../contexts/MovieContext.js";
 
@@ -20,7 +20,11 @@ const Main = () => {
   return (
     <div className={styles.main}>
       <Header />
-      <MovieContext.Provider value={(page_id, searchPhrase, movieCards)}>
+      <MovieContext.Provider
+        value={
+          (page_id, searchPhrase, setSearchPhrase, movieCards, setMovieCards)
+        }
+      >
         <SearchPanel />
         <MovieCardsPanel />
         <NavigationBar />
