@@ -4,11 +4,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main.js";
 import Movie from "./pages/Movie.js";
-import { useState } from "react";
 
 const App = () => {
-  let [globalQuery, setGlobalQuery] = useState("");
-
   return (
     <Routes>
       <Route path="/pages/:page_id" element={<Main />}></Route>

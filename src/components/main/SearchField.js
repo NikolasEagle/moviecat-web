@@ -4,20 +4,29 @@ import { useContext } from "react";
 
 import MainContext from "../../contexts/MainContext.js";
 
+import { useNavigate } from "react-router-dom";
+
 const SearchField = () => {
   const context = useContext(MainContext);
+
+  const navigate = useNavigate();
 
   return (
     <input
       placeholder="Поиск..."
       className={styles.search}
-      value={context.searchPhrase}
-      onChange={(event) => {
-        context.setSearchPhrase(event.target.value);
-      }}
+      value={context.searchValue}
+      onChange={(event) => context.setSearchValue(event.target.value)}
       onKeyDown={(event) => {
         if (event.key === "Enter") {
-          context.generatePage(1, context.searchPhrase);
+          context.setQueryPhrase(context.searchValue);
+          if (context.searchValue) {
+            navigate(`/search/${context.searchValue}/pages/1`);
+          } else {
+            navigate(`/pages/1`);
+          }
+          context.setSearchValue("");
+          context.setPage(1);
         }
       }}
     />

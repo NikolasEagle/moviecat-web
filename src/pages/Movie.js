@@ -48,7 +48,6 @@ const Movie = () => {
           </div>
           <Description />
           <Trailer />
-          <Player />
         </div>
       ) : (
         <Download />

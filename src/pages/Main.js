@@ -13,33 +13,36 @@ import { useState } from "react";
 import MovieContext from "../contexts/MainContext.js";
 
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import Download from "../components/additional/Download.js";
 import NotFound from "../components/additional/NotFound.js";
 import Error from "../components/additional/Error.js";
 
 const Main = () => {
-  const navigate = useNavigate();
-
   let { page_id, query } = useParams();
 
-  let [searchPhrase, setSearchPhrase] = useState("");
+  let [searchValue, setSearchValue] = useState("");
+
+  let [queryPhrase, setQueryPhrase] = useState("");
+
+  let [page, setPage] = useState(1);
 
   let [movieCards, setMovieCards] = useState([]);
 
-  async function generatePage(page_id = 1, query) {
+  async function generatePage() {
     setMovieCards(<Download />);
 
     let url;
 
+    setQueryPhrase(query);
+
+    setPage(+page_id);
+
     if (query) {
       let queryLowerCase = query.replace(/ /g, "_");
       url = `/api/movies/search/${queryLowerCase}/pages/${page_id}`;
-      navigate(`/search/${queryLowerCase}/pages/${page_id}`);
     } else {
       url = `/api/movies/pages/${page_id}`;
-      navigate(`/pages/${page_id}`);
     }
 
     try {
@@ -51,7 +54,7 @@ const Main = () => {
 
       if (data.length) {
         setMovieCards([
-          <ResultsInfo query={query ? query.replace(/\_/g, " ") : null} />,
+          <ResultsInfo query={query ? query.replace(/_/g, " ") : null} />,
           <PageNumber currentPage={body.current_page} />,
           ...data.map((movie) => (
             <MovieCard
@@ -85,8 +88,12 @@ const Main = () => {
           page_id,
           query,
           generatePage,
-          searchPhrase,
-          setSearchPhrase,
+          queryPhrase,
+          setQueryPhrase,
+          searchValue,
+          setSearchValue,
+          page,
+          setPage,
           movieCards,
           setMovieCards,
         }}

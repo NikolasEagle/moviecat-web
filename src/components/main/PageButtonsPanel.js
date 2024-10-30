@@ -4,25 +4,42 @@ import { useContext } from "react";
 
 import MainContext from "../../contexts/MainContext.js";
 
+import { useNavigate } from "react-router-dom";
+
 const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
   const context = useContext(MainContext);
+
+  const navigate = useNavigate();
 
   return (
     <nav className={styles.panel}>
       {prev_page ? (
-        <button onClick={() => context.generatePage(1, context.searchPhrase)}>
+        <button
+          onClick={() => {
+            if (context.queryPhrase) {
+              navigate(`/search/${context.queryPhrase}/pages/1`);
+            } else {
+              navigate(`/pages/1`);
+            }
+            context.setPage(1);
+          }}
+        >
           В начало
         </button>
       ) : null}
 
       {prev_page ? (
         <button
-          onClick={() =>
-            context.generatePage(
-              Number(context.page_id) - 1,
-              context.searchPhrase
-            )
-          }
+          onClick={() => {
+            if (context.queryPhrase) {
+              navigate(
+                `/search/${context.queryPhrase}/pages/${context.page - 1}`
+              );
+            } else {
+              navigate(`/pages/${context.page - 1}`);
+            }
+            context.setPage(context.page - 1);
+          }}
         >
           &lt;
         </button>
@@ -30,12 +47,16 @@ const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
 
       {next_page ? (
         <button
-          onClick={() =>
-            context.generatePage(
-              Number(context.page_id) + 1,
-              context.searchPhrase
-            )
-          }
+          onClick={() => {
+            if (context.queryPhrase) {
+              navigate(
+                `/search/${context.queryPhrase}/pages/${context.page + 1}`
+              );
+            } else {
+              navigate(`/pages/${context.page + 1}`);
+            }
+            context.setPage(context.page + 1);
+          }}
         >
           &gt;
         </button>

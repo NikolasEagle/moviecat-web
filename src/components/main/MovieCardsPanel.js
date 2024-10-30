@@ -8,8 +8,8 @@ function MovieCardsPanel() {
   const context = useContext(MainContext);
 
   useEffect(() => {
-    context.generatePage(context.page_id, context.query);
-  }, []);
+    context.generatePage();
+  }, [context.query, context.page_id]);
 
   return <div className={styles.panel}>{context.movieCards}</div>;
 }
