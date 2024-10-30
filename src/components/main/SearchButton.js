@@ -14,15 +14,15 @@ const SearchButton = () => {
   return (
     <button
       className={styles.search_button}
-      onClick={() => {
-        context.setQueryPhrase(context.searchValue);
-        if (context.searchValue) {
-          navigate(`/search/${context.searchValue}/pages/1`);
-        } else {
-          navigate(`/pages/1`);
+      onClick={(event) => {
+        if (event.key === "Enter") {
+          if (context.searchValue) {
+            navigate(`/search/${context.searchValue}/pages/1`);
+          } else {
+            navigate(`/pages/1`);
+          }
+          context.setSearchValue("");
         }
-        context.setSearchValue("");
-        context.setPage(1);
       }}
     ></button>
   );

@@ -23,10 +23,6 @@ const Main = () => {
 
   let [searchValue, setSearchValue] = useState("");
 
-  let [queryPhrase, setQueryPhrase] = useState("");
-
-  let [page, setPage] = useState(1);
-
   let [movieCards, setMovieCards] = useState([]);
 
   async function generatePage() {
@@ -34,15 +30,11 @@ const Main = () => {
 
     let url;
 
-    setQueryPhrase(query);
-
-    setPage(+page_id);
-
     if (query) {
       let queryLowerCase = query.replace(/ /g, "_");
-      url = `/api/movies/search/${queryLowerCase}/pages/${page_id}`;
+      url = `https://kinobd.xyz/api/films/search/title?q=${queryLowerCase}&&page=${page_id}`;
     } else {
-      url = `/api/movies/pages/${page_id}`;
+      url = `https://kinobd.xyz/api/films?page=${page_id}`;
     }
 
     try {
@@ -88,12 +80,8 @@ const Main = () => {
           page_id,
           query,
           generatePage,
-          queryPhrase,
-          setQueryPhrase,
           searchValue,
           setSearchValue,
-          page,
-          setPage,
           movieCards,
           setMovieCards,
         }}

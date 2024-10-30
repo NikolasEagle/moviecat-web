@@ -19,14 +19,12 @@ const SearchField = () => {
       onChange={(event) => context.setSearchValue(event.target.value)}
       onKeyDown={(event) => {
         if (event.key === "Enter") {
-          context.setQueryPhrase(context.searchValue);
           if (context.searchValue) {
             navigate(`/search/${context.searchValue}/pages/1`);
           } else {
             navigate(`/pages/1`);
           }
           context.setSearchValue("");
-          context.setPage(1);
         }
       }}
     />

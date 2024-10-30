@@ -6,7 +6,7 @@ import MainContext from "../../contexts/MainContext.js";
 
 import { useNavigate } from "react-router-dom";
 
-const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
+const PageButtonsPanel = ({ prev_page, next_page }) => {
   const context = useContext(MainContext);
 
   const navigate = useNavigate();
@@ -16,12 +16,11 @@ const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
       {prev_page ? (
         <button
           onClick={() => {
-            if (context.queryPhrase) {
-              navigate(`/search/${context.queryPhrase}/pages/1`);
+            if (context.query) {
+              navigate(`/search/${context.query}/pages/1`);
             } else {
               navigate(`/pages/1`);
             }
-            context.setPage(1);
           }}
         >
           В начало
@@ -31,14 +30,13 @@ const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
       {prev_page ? (
         <button
           onClick={() => {
-            if (context.queryPhrase) {
+            if (context.query) {
               navigate(
-                `/search/${context.queryPhrase}/pages/${context.page - 1}`
+                `/search/${context.query}/pages/${+context.page_id - 1}`
               );
             } else {
-              navigate(`/pages/${context.page - 1}`);
+              navigate(`/pages/${+context.page_id - 1}`);
             }
-            context.setPage(context.page - 1);
           }}
         >
           &lt;
@@ -48,14 +46,13 @@ const PageButtonsPanel = ({ first_page, prev_page, next_page }) => {
       {next_page ? (
         <button
           onClick={() => {
-            if (context.queryPhrase) {
+            if (context.query) {
               navigate(
-                `/search/${context.queryPhrase}/pages/${context.page + 1}`
+                `/search/${context.query}/pages/${+context.page_id + 1}`
               );
             } else {
-              navigate(`/pages/${context.page + 1}`);
+              navigate(`/pages/${+context.page_id + 1}`);
             }
-            context.setPage(context.page + 1);
           }}
         >
           &gt;
