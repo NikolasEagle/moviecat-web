@@ -13,7 +13,11 @@ const Player = () => {
     <div className={styles.player}>
       <h3>Смотреть онлайн</h3>
 
-      <div data-kinopoisk={context.kinopoisk_id} id="kinobd"></div>
+      <div
+        data-player="collaps"
+        data-kinopoisk={context.kinopoisk_id}
+        id="kinobd"
+      ></div>
       <Helmet>
         <script src="https://kinobd.xyz/js/player_.js"></script>
       </Helmet>
