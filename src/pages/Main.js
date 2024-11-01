@@ -15,7 +15,6 @@ import MovieContext from "../contexts/MainContext.js";
 import { useParams } from "react-router-dom";
 
 import Download from "../components/additional/Download.js";
-import NotFound from "../components/additional/NotFound.js";
 import Error from "../components/additional/Error.js";
 
 const Main = () => {
@@ -44,28 +43,27 @@ const Main = () => {
 
       let data = body.data;
 
-      if (data.length) {
-        setMovieCards([
-          <ResultsInfo query={query ? query.replace(/_/g, " ") : null} />,
-          <PageNumber currentPage={body.current_page} />,
-          ...data.map((movie) => (
-            <MovieCard
-              id={movie.id}
-              year={movie.year}
-              rating={movie.rating_kp || movie.rating_imdb}
-              name={movie.name_russian || movie.name_original}
-              poster={movie.small_poster || movie.big_poster || "/default.png"}
-            />
-          )),
-          <PageButtonsPanel
-            first_page={body.first_page_url}
-            prev_page={body.prev_page_url}
-            next_page={body.next_page_url}
-          />,
-        ]);
-      } else {
-        setMovieCards(<NotFound query={query} />);
-      }
+      setMovieCards([
+        <ResultsInfo
+          query={query ? query.replace(/_/g, " ") : null}
+          data={data.length}
+        />,
+        <PageNumber currentPage={data.length ? body.current_page : null} />,
+        ...data.map((movie) => (
+          <MovieCard
+            id={movie.id}
+            year={movie.year}
+            rating={movie.rating_kp || movie.rating_imdb}
+            name={movie.name_russian || movie.name_original}
+            poster={movie.small_poster || movie.big_poster || "/default.png"}
+          />
+        )),
+        <PageButtonsPanel
+          first_page={body.first_page_url}
+          prev_page={body.prev_page_url}
+          next_page={body.next_page_url}
+        />,
+      ]);
     } catch (error) {
       console.log(error.message);
       setMovieCards(<Error message={error.message} />);
