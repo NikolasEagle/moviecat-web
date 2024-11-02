@@ -1,36 +1,40 @@
 import { render } from "@testing-library/react";
 import ResultsInfo from "./ResultsInfo";
 
-import randomNumber from "random-number";
-import randomString from "randomstring";
+test("Вывод сообщения о найденных или не найденных результатах", () => {
+  const { container, rerender, getByRole } = render(
+    <ResultsInfo
+      query={""}
+      data={Array(50)
+        .fill()
+        .map((elem, index) => index + 1)}
+    />
+  );
 
-const propsArray = new Array(100).fill().map(() => {
-  return {
-    query: randomString.generate(),
-    data: randomNumber({ min: 0, max: 1, integer: true }),
-  };
+  expect(container.firstChild).toBeNull();
+
+  rerender(
+    <ResultsInfo
+      query={"человек паук"}
+      data={Array(50)
+        .fill()
+        .map((elem, index) => index + 1)}
+    />
+  );
+
+  expect(
+    getByRole("heading", {
+      level: 2,
+      name: "Результаты по запросу - человек паук",
+    })
+  ).toHaveClass("results_info");
+
+  rerender(<ResultsInfo query={"gfdgsfdgsgf"} data={[]} />);
+
+  expect(
+    getByRole("heading", {
+      level: 2,
+      name: "По запросу - gfdgsfdgsgf - не найдено результатов",
+    })
+  ).toHaveClass("results_info");
 });
-
-for (let props of propsArray) {
-  test("Вывод названия запроса", () => {
-    const { container, getByRole } = render(
-      <ResultsInfo query={props.query} data={props.data} />
-    );
-    if (props.query) {
-      const element = getByRole("heading", { level: 2 });
-      expect(element).toHaveClass(`results_info`);
-      expect(element).toBeInTheDocument();
-      if (props.data) {
-        expect(element).toHaveTextContent(
-          `Результаты по запросу - ${props.query}`
-        );
-      } else {
-        expect(element).toHaveTextContent(
-          `По запросу - ${props.query} - не найдено результатов`
-        );
-      }
-    } else {
-      expect(container).toBeNull();
-    }
-  });
-}

@@ -1,30 +1,25 @@
+import { useContext } from "react";
 import styles from "./MovieCard.module.scss";
 
-import { useNavigate } from "react-router-dom";
+import MainContext from "../../contexts/MainContext.js";
 
 const MovieCard = ({ id, year, rating, name, poster }) => {
-  const navigate = useNavigate();
+  const context = useContext(MainContext);
 
   return (
     <div
-      style={{
-        background: `linear-gradient(to top, black, transparent), url(${poster})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
       tabIndex={0}
       className={styles.card}
-      onClick={() => navigate(`/movies/${id}`)}
+      onClick={() => context.navigate(`/movies/${id}`)}
     >
       <div className={styles.top_panel}>
-        <div className={styles.year}>{year}</div>
-        <div className={styles.rating} hidden={Boolean(!rating)}>
-          {rating}
-        </div>
+        {year && <div className={styles.year}>{year}</div>}
+        {rating && <div className={styles.rating}>{rating}</div>}
       </div>
 
-      <div>{name}</div>
+      <img src={poster} />
+
+      <div className={styles.name}>{name}</div>
     </div>
   );
 };

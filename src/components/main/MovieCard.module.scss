@@ -12,11 +12,12 @@
 }
 
 .card {
-  padding: 20px;
 
-  width: 120px;
+  position: relative;
 
-  height: 180px;
+  width: 160px;
+
+  height: 220px;
 
   border-radius: 10px;
 
@@ -32,31 +33,63 @@
 
   color: white;
 
+  z-index: 3;
+
   &:hover,
   &:focus {
     box-shadow: 0 0 15px cyan;
     transform: scale(1.1);
     outline: none;
   }
-}
 
-.top_panel {
-  display: flex;
+  .top_panel {
+    display: flex;
+  
+    flex-direction: row;
+  
+    justify-content: space-between;
 
-  flex-direction: row;
+    .rating {
+      color: cyan;
+      text-align: center;
+      margin: 20px 20px 0 0;
+    }
 
-  justify-content: space-between;
-}
+    .year {
 
-.rating {
-  color: cyan;
-  text-align: center;
-}
+      margin: 20px 0 0 20px;
 
-.year,
-.rating {
-  font-weight: bold;
-  background: black;
-  padding: 8px;
-  border-radius: 10px;
+    }
+    
+    .year,
+    .rating {
+      font-weight: bold;
+      background: black;
+      padding: 8px;
+      border-radius: 10px;
+      z-index: 1;
+    }
+  }
+
+  img {
+
+    position: absolute;
+
+    background-color: red;
+
+    width: 160px;
+
+    height: 220px;
+
+    border-radius: 10px;
+
+  }
+
+  .name {
+
+    z-index: 1;
+
+    margin-bottom: 20px;
+
+  }
 }

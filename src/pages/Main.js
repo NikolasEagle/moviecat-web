@@ -12,13 +12,15 @@ import { useState } from "react";
 
 import MovieContext from "../contexts/MainContext.js";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Download from "../components/additional/Download.js";
 import Error from "../components/additional/Error.js";
 
 const Main = () => {
   let { page_id, query } = useParams();
+
+  let navigate = useNavigate();
 
   let [searchValue, setSearchValue] = useState("");
 
@@ -30,8 +32,7 @@ const Main = () => {
     let url;
 
     if (query) {
-      let queryLowerCase = query.replace(/ /g, "_");
-      url = `https://kinobd.xyz/api/films/search/title?q=${queryLowerCase}&&page=${page_id}`;
+      url = `https://kinobd.xyz/api/films/search/title?q=${query}&&page=${page_id}`;
     } else {
       url = `https://kinobd.xyz/api/films?page=${page_id}`;
     }
@@ -44,16 +45,13 @@ const Main = () => {
       let data = body.data;
 
       setMovieCards([
-        <ResultsInfo
-          query={query ? query.replace(/_/g, " ") : null}
-          data={data.length}
-        />,
+        <ResultsInfo query={query} data={data} />,
         <PageNumber currentPage={data.length ? body.current_page : null} />,
         ...data.map((movie) => (
           <MovieCard
             id={movie.id}
             year={movie.year}
-            rating={movie.rating_kp || movie.rating_imdb}
+            rating={movie.rating_kp || movie.rating_imdb || null}
             name={movie.name_russian || movie.name_original}
             poster={movie.small_poster || movie.big_poster || "/default.png"}
           />
@@ -77,6 +75,7 @@ const Main = () => {
         value={{
           page_id,
           query,
+          navigate,
           generatePage,
           searchValue,
           setSearchValue,
