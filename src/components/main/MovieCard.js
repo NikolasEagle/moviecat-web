@@ -19,6 +19,8 @@ const MovieCard = ({ id, year, rating, name, poster }) => {
 
       <img src={poster} />
 
+      <div className={styles.gradient}></div>
+
       <div className={styles.name}>{name}</div>
     </div>
   );

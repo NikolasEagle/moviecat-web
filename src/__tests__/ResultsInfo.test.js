@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import ResultsInfo from "./ResultsInfo";
+import ResultsInfo from "../components/main/ResultsInfo";
 
 test("Вывод сообщения о найденных или не найденных результатах", () => {
   const { container, rerender, getByRole } = render(

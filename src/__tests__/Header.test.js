@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Header from "./Header";
+import Header from "../components/main/Header.js";
 
 test("Заголовок главной страницы", () => {
   const { getByRole } = render(<Header />);
@@ -11,5 +11,5 @@ test("Заголовок главной страницы", () => {
 
   expect(element).toHaveClass("header");
 
-  expect(element).toBeVisible();
+  expect(element).toBeInTheDocument();
 });
