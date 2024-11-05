@@ -1,5 +1,7 @@
 .search {
-  padding: 20px;
+  height: 50px;
+
+  padding: 0 20px 0 20px;
 
   box-sizing: border-box;
 
@@ -13,7 +15,7 @@
 
   color: white;
 
-  width: 90%;
+  width: calc(100% - 60px);
 
   transition: 0.5s;
 

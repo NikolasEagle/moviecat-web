@@ -1,6 +1,5 @@
 import styles from "./Main.module.scss";
 
-import Header from "../components/main/Header.js";
 import SearchPanel from "../components/main/SearchPanel.js";
 import ResultsInfo from "../components/main/ResultsInfo.js";
 import PageNumber from "../components/main/PageNumber.js";
@@ -70,7 +69,6 @@ const Main = () => {
 
   return (
     <div className={styles.main}>
-      <Header />
       <MovieContext.Provider
         value={{
           page_id,

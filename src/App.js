@@ -1,11 +1,16 @@
-import "./App.module.scss";
-
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Main from "./pages/Main.js";
 import Movie from "./pages/Movie.js";
+import { useEffect } from "react";
 
 const App = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/pages/1");
+  }, []);
+
   return (
     <Routes>
       <Route path="/pages/:page_id" element={<Main />}></Route>
