@@ -9,7 +9,7 @@ const Poster = () => {
 
   return (
     <div className={styles.poster}>
-      <img src={context.big_poster || context.small_poster} />
+      <img src={context.big_poster || context.small_poster || "/default.png"} />
     </div>
   );
 };

@@ -2,8 +2,6 @@ import styles from "./Movie.module.scss";
 
 import { useEffect, useState } from "react";
 
-import Poster from "../components/movie/Poster.js";
-import Info from "../components/movie/Info.js";
 import Description from "../components/movie/Description.js";
 import Trailer from "../components/movie/Trailer.js";
 import Player from "../components/movie/Player.js";
@@ -14,6 +12,7 @@ import { useParams } from "react-router-dom";
 
 import Error from "../components/additional/Error";
 import Download from "../components/additional/Download.js";
+import TopPanel from "../components/movie/TopPanel.js";
 
 const Movie = () => {
   let { movie_id } = useParams();
@@ -42,12 +41,8 @@ const Movie = () => {
     <MovieContext.Provider value={movieData}>
       {movieData ? (
         <div className={styles.movie}>
-          <div className={styles.top_panel}>
-            <Poster />
-            <Info />
-          </div>
+          <TopPanel />
           <Description />
-          <Trailer />
           <Player />
         </div>
       ) : (

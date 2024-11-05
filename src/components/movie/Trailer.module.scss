@@ -1,11 +1,9 @@
 .trailer {
+  display: flex;
 
-    padding: 20px;
+  flex-direction: column;
 
-    display: flex;
+  width: 100%;
 
-    flex-direction: column;
-
-    width: 820px;
-
+  height: 500px;
 }

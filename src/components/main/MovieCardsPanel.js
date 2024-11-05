@@ -9,6 +9,7 @@ function MovieCardsPanel() {
 
   useEffect(() => {
     context.generatePage();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [context.query, context.page_id]);
 
   return <div className={styles.panel}>{context.movieCards}</div>;

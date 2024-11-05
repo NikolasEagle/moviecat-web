@@ -6,6 +6,7 @@ import SearchButton from "./SearchButton.js";
 const SearchPanel = () => (
   <>
     <div className={styles.search_panel}>
+      <h1 className={styles.header}>Movicat</h1>
       <SearchField />
       <SearchButton />
     </div>

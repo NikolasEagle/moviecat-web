@@ -10,19 +10,38 @@
 .header {
   color: cyan;
 
-  margin: 15px 0;
+  margin: 0;
 
   animation: 2s infinite alternate blur ease-in-out;
 
   text-align: left;
 
-  width: 100%;
+  @media screen and (max-width: 575px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: 125px;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1999px) {
+    width: 125px;
+  }
+  @media screen and (min-width: 2000px) {
+    width: 125px;
+  }
 }
 
 .search_panel {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  gap: 10px;
+  gap: 15px;
 }

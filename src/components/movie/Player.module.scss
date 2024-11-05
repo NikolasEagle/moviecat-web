@@ -1,11 +1,7 @@
 .player {
+  display: flex;
 
-    padding: 20px;
+  flex-direction: column;
 
-    display: flex;
-
-    flex-direction: column;
-
-    width: 820px;
-
+  width: 100%;
 }

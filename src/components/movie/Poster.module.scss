@@ -1,17 +1,10 @@
-$size: 2.5;
-
 .poster {
+  width: 270px;
+  height: auto;
 
-    padding: 20px;
-
-    img {
-
-        border-radius: 10px;
-
-        width: calc(300px);
-
-        height: calc(450px);
-
-    }
-
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
 }

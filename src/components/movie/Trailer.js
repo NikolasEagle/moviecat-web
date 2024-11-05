@@ -14,11 +14,11 @@ const Trailer = () => {
       <iframe
         id="ytplayer"
         type="text/html"
-        width="820"
-        height="482"
+        height="100%"
+        width="100%"
         src={context.trailer}
         frameborder="0"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </div>
   );

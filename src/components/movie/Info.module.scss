@@ -1,5 +1,30 @@
 .movie_info {
+  width: calc(100% - 290px);
+  h2 {
+    margin: 0;
+  }
 
-    padding: 10px;
+  @media screen and (max-width: 575px) {
+    width: 100%;
+    text-align: center;
+  }
 
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: calc(100% - 290px);
+    text-align: justify;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1999px) {
+    width: calc(100% - 290px);
+    text-align: justify;
+  }
+  @media screen and (min-width: 2000px) {
+    width: calc(100% - 290px);
+    text-align: justify;
+  }
 }
