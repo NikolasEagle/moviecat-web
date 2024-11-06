@@ -14,7 +14,7 @@ const Player = () => {
       <h3>Смотреть онлайн</h3>
 
       <div
-        data-player="collaps"
+        data-player="alloha"
         data-kinopoisk={context.kinopoisk_id}
         id="kinobd"
       ></div>

@@ -2,10 +2,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main.js";
 import Movie from "./pages/Movie.js";
+import Error from "./components/additional/Error.js";
+import ErrorPage from "./pages/ErrorPage.js";
 
 const App = () => {
   return (
     <Routes>
+      <Route path="*" element={<ErrorPage />}></Route>
       <Route path="/pages/:page_id" element={<Main />}></Route>
       <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
       <Route path="/movies/:movie_id" element={<Movie />}></Route>

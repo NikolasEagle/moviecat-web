@@ -11,7 +11,10 @@ const Info = () => {
 
   return (
     <div className={styles.movie_info}>
-      <h2>{`${context.name_russian} (${context.year})`}</h2>
+      <h2>
+        {context.name_russian}
+        {context.year && ` (${context.year})`}
+      </h2>
       <p>
         <strong>Страна</strong>: {context.country_ru}
       </p>
