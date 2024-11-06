@@ -43,6 +43,7 @@ const Movie = () => {
         <div className={styles.movie}>
           <TopPanel />
           <Description />
+
           <Player />
         </div>
       ) : (
