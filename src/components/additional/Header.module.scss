@@ -1,0 +1,18 @@
+@keyframes blur {
+  from {
+    text-shadow: 0 0 15px cyan;
+  }
+  to {
+    text-shadow: 0 0 25px cyan;
+  }
+}
+
+.header {
+  color: cyan;
+
+  margin: 0;
+
+  animation: 2s infinite alternate blur ease-in-out;
+
+  text-align: left;
+}
