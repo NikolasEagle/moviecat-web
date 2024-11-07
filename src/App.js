@@ -1,24 +1,21 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 import Main from "./pages/Main.js";
 import Movie from "./pages/Movie.js";
-import Error from "./components/additional/Error.js";
 import ErrorPage from "./pages/ErrorPage.js";
+import ProtectedRoute from "./pages/ProtectedRoute.js";
 
-const App = () => {
-  return (
-    <BrowserRouter basename="/">
-      <Routes>
-        <Route path="*" element={<ErrorPage />}></Route>
+const App = () => (
+  <Router basename="/">
+    <Routes>
+      <Route path="/login" element={<div>Login</div>}></Route>
+      <Route element={<ProtectedRoute user={false} />}>
         <Route path="/pages/:page_id" element={<Main />}></Route>
         <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
         <Route path="/movies/:movie_id" element={<Movie />}></Route>
-      </Routes>
-    </BrowserRouter>
-  );
-};
+      </Route>
+    </Routes>
+  </Router>
+);
 
 export default App;
-
-/*<Route path="/about_movie/:movie_id" element={<InfoMovie />}></Route>
-<Route path="/player/:movie_id" element={<Player />}></Route>*/
