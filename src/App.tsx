@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 import Login from "./pages/Login.js";
@@ -12,7 +13,7 @@ const App = () => (
     <Routes>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
-      <Route element={<ProtectedRoute isAuth={false} />}>
+      <Route element={<ProtectedRoute />}>
         <Route path="/pages/:page_id" element={<Main />}></Route>
         <Route path="/search/:query/pages/:page_id" element={<Main />}></Route>
         <Route path="/movies/:movie_id" element={<Movie />}></Route>

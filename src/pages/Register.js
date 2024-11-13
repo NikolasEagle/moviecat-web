@@ -1,28 +1,63 @@
 import styles from "./Register.module.scss";
 
-import Header from "../components/additional/Header";
 import FormRegister from "../components/register/FormRegister";
 
 import RegisterContext from "../contexts/RegisterContext";
+import { useState } from "react";
+import Download from "../components/additional/Download";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  async function sendReq(event) {
-    event.preventDefault();
+  const navigate = useNavigate();
 
-    let data = JSON.stringify(Object.fromEntries(new FormData(event.target)));
+  const [email, setEmail] = useState("");
+
+  const [name, setName] = useState("");
+
+  const [surname, setSurname] = useState("");
+
+  const [content, setContent] = useState(<FormRegister />);
+
+  async function sendReq(event) {
+    setContent(<Download />);
+    event.preventDefault();
 
     try {
       let response = await fetch("/register", {
         method: "POST",
-        body: data,
+        body: JSON.stringify({
+          email: email,
+
+          name: name,
+
+          surname: surname,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       if (response.status === 201) {
-        let body = await response.json();
+        let { name, surname, email } = await response.json();
 
-        console.log(body);
+        setContent(
+          <>
+            <p>
+              {surname} {name} ваша заявка принята в работу.
+              <br />
+              После рассмотрения на почту {email} будет выслан пароль для входа.
+            </p>
+            <button onClick={() => navigate("/")}>
+              Вернуться на страницу входа
+            </button>
+          </>
+        );
+      } else if (response.status === 409) {
+        setContent([
+          <FormRegister />,
+          <p style={{ color: "red" }}>
+            Пользователь с таким email уже существует
+          </p>,
+        ]);
       }
     } catch (error) {
       console.log(error);
@@ -30,9 +65,18 @@ const Register = () => {
   }
   return (
     <div className={styles.register}>
-      <RegisterContext.Provider value={{ sendReq }}>
-        <h2>Запрос на регистрацию</h2>
-        <FormRegister />
+      <RegisterContext.Provider
+        value={{
+          sendReq,
+          setEmail,
+          email,
+          setName,
+          name,
+          setSurname,
+          surname,
+        }}
+      >
+        {content}
       </RegisterContext.Provider>
     </div>
   );

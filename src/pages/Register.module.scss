@@ -50,4 +50,23 @@
       font-size: 50px;
     }
   }
+
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    background-color: cyan;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.5s;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 15px cyan;
+      transform: scale(1.05);
+      outline: none;
+    }
+  }
 }
