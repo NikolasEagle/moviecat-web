@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+
 import styles from "./MovieCard.module.scss";
 
-import MainContext from "../../contexts/MainContext.js";
+import MainContext, { contextType } from "../../contexts/MainContext.js";
 
 const MovieCard = ({ id, year, rating, name, poster }) => {
-  const context = useContext(MainContext);
+  const context = useContext(MainContext) as contextType;
 
   return (
     <div

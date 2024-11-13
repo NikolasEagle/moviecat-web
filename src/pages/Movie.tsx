@@ -1,6 +1,6 @@
 import styles from "./Movie.module.scss";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Description from "../components/movie/Description.js";
 import Trailer from "../components/movie/Trailer.js";
@@ -10,14 +10,16 @@ import MovieContext from "../contexts/MovieContext.js";
 
 import { useParams } from "react-router-dom";
 
-import Error from "../components/additional/Error";
+import Error from "../components/additional/Error.js";
 import Download from "../components/additional/Download.js";
 import TopPanel from "../components/movie/TopPanel.js";
 
 const Movie = () => {
   let { movie_id } = useParams();
 
-  let [movieData, setMovieData] = useState("");
+  let [movieData, setMovieData] = useState<
+    React.JSX.Element | React.JSX.Element[]
+  >([]);
 
   useEffect(() => {
     generatePage();
@@ -33,7 +35,7 @@ const Movie = () => {
 
       setMovieData(body);
     } catch (error) {
-      setMovieData(<Error message={error.message} />);
+      setMovieData(<Error />);
     }
   }
 

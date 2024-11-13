@@ -1,34 +1,38 @@
+import React from "react";
+
 import styles from "./Main.module.scss";
 
-import SearchPanel from "../components/main/SearchPanel.js";
-import ResultsInfo from "../components/main/ResultsInfo.js";
-import PageNumber from "../components/main/PageNumber.js";
-import MovieCardsPanel from "../components/main/MovieCardsPanel.js";
-import MovieCard from "../components/main/MovieCard.js";
-import PageButtonsPanel from "../components/main/PageButtonsPanel.js";
+import SearchPanel from "../components/main/SearchPanel.tsx";
+import ResultsInfo from "../components/main/ResultsInfo.tsx";
+import PageNumber from "../components/main/PageNumber.tsx";
+import MovieCardsPanel from "../components/main/MovieCardsPanel.tsx";
+import MovieCard from "../components/main/MovieCard.tsx";
+import PageButtonsPanel from "../components/main/PageButtonsPanel.tsx";
 
 import { useState } from "react";
 
-import MovieContext from "../contexts/MainContext.js";
+import MovieContext from "../contexts/MainContext.tsx";
 
 import { useParams, useNavigate } from "react-router-dom";
 
-import Download from "../components/additional/Download.js";
-import Error from "../components/additional/Error.js";
+import Download from "../components/additional/Download.tsx";
+import Error from "../components/additional/Error.tsx";
 
 const Main = () => {
   let { page_id, query } = useParams();
 
   let navigate = useNavigate();
 
-  let [searchValue, setSearchValue] = useState("");
+  let [searchValue, setSearchValue] = useState<string>("");
 
-  let [movieCards, setMovieCards] = useState([]);
+  let [movieCards, setMovieCards] = useState<
+    React.JSX.Element[] | React.JSX.Element
+  >([]);
 
   async function generatePage() {
     setMovieCards(<Download />);
 
-    let url;
+    let url: string;
 
     if (query) {
       url = `https://kinobd.xyz/api/films/search/title?q=${query}&&page=${page_id}`;
@@ -46,7 +50,7 @@ const Main = () => {
       setMovieCards([
         <ResultsInfo query={query} data={data} />,
         <PageNumber currentPage={data.length ? body.current_page : null} />,
-        ...data.map((movie) => (
+        ...data.map((movie: any) => (
           <MovieCard
             id={movie.id}
             year={movie.year}
@@ -56,14 +60,13 @@ const Main = () => {
           />
         )),
         <PageButtonsPanel
-          first_page={body.first_page_url}
           prev_page={body.prev_page_url}
           next_page={body.next_page_url}
         />,
       ]);
     } catch (error) {
       console.log(error.message);
-      setMovieCards(<Error message={error.message} />);
+      setMovieCards(<Error />);
     }
   }
 

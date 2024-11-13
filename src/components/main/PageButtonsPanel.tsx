@@ -1,13 +1,13 @@
+import React, { useContext } from "react";
+
 import styles from "./PageButtonsPanel.module.scss";
 
-import { useContext } from "react";
-
-import MainContext from "../../contexts/MainContext.js";
+import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
 import { useNavigate } from "react-router-dom";
 
 const PageButtonsPanel = ({ prev_page, next_page }) => {
-  const context = useContext(MainContext);
+  const context = useContext(MainContext) as contextType;
 
   const navigate = useNavigate();
 
@@ -32,10 +32,10 @@ const PageButtonsPanel = ({ prev_page, next_page }) => {
           onClick={() => {
             if (context.query) {
               navigate(
-                `/search/${context.query}/pages/${+context.page_id - 1}`
+                `/search/${context.query}/pages/${Number(context.page_id) - 1}`
               );
             } else {
-              navigate(`/pages/${+context.page_id - 1}`);
+              navigate(`/pages/${Number(context.page_id) - 1}`);
             }
           }}
         >
@@ -48,10 +48,10 @@ const PageButtonsPanel = ({ prev_page, next_page }) => {
           onClick={() => {
             if (context.query) {
               navigate(
-                `/search/${context.query}/pages/${+context.page_id + 1}`
+                `/search/${context.query}/pages/${Number(context.page_id) + 1}`
               );
             } else {
-              navigate(`/pages/${+context.page_id + 1}`);
+              navigate(`/pages/${Number(context.page_id) + 1}`);
             }
           }}
         >

@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
-import Login from "./pages/Login.js";
-import Register from "./pages/Register.js";
-import ProtectedRoute from "./pages/ProtectedRoute.js";
-import Main from "./pages/Main.js";
-import Movie from "./pages/Movie.js";
-import ErrorPage from "./pages/ErrorPage.js";
+import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
+import ProtectedRoute from "./pages/ProtectedRoute.tsx";
+import Main from "./pages/Main.tsx";
+import Movie from "./pages/Movie.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
 
-const App = () => (
+const App = (): React.JSX.Element => (
   <Router basename="/">
     <Routes>
       <Route path="/login" element={<Login />}></Route>

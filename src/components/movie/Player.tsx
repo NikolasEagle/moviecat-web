@@ -2,9 +2,9 @@ import styles from "./Player.module.scss";
 
 import { Helmet } from "react-helmet";
 
-import { useContext } from "react";
+import React, { useContext } from "react";
 
-import MovieContext from "../../contexts/MovieContext.js";
+import MovieContext from "../../contexts/MovieContext.tsx";
 
 const Player = () => {
   const context = useContext(MovieContext);

@@ -1,11 +1,11 @@
+import React, { useContext, useEffect } from "react";
+
 import styles from "./MovieCardsPanel.module.scss";
 
-import { useContext, useEffect } from "react";
-
-import MainContext from "../../contexts/MainContext.js";
+import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
 function MovieCardsPanel() {
-  const context = useContext(MainContext);
+  const context = useContext(MainContext) as contextType;
 
   useEffect(() => {
     context.generatePage();

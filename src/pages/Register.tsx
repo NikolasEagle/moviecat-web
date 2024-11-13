@@ -1,24 +1,27 @@
+import React, { useState } from "react";
+
 import styles from "./Register.module.scss";
 
-import FormRegister from "../components/register/FormRegister";
+import FormRegister from "../components/register/FormRegister.tsx";
 
-import RegisterContext from "../contexts/RegisterContext";
-import { useState } from "react";
-import Download from "../components/additional/Download";
+import RegisterContext from "../contexts/RegisterContext.tsx";
+
+import Download from "../components/additional/Download.tsx";
+
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState<string>("");
 
-  const [surname, setSurname] = useState("");
+  const [surname, setSurname] = useState<string>("");
 
-  const [content, setContent] = useState(<FormRegister />);
+  const [content, setContent] = useState<React.JSX.Element>(<FormRegister />);
 
-  async function sendReq(event) {
+  async function sendReq(event: Event) {
     setContent(<Download />);
     event.preventDefault();
 
@@ -52,12 +55,14 @@ const Register = () => {
           </>
         );
       } else if (response.status === 409) {
-        setContent([
-          <FormRegister />,
-          <p style={{ color: "red" }}>
-            Пользователь с таким email уже существует
-          </p>,
-        ]);
+        setContent(
+          <>
+            <FormRegister />,
+            <p style={{ color: "red" }}>
+              Пользователь с таким email уже существует
+            </p>
+          </>
+        );
       }
     } catch (error) {
       console.log(error);
