@@ -2,8 +2,12 @@ import React from "react";
 
 import styles from "./Error.module.scss";
 
-const Error = () => (
-  <div className={styles.error}>Потеряно соединение с сервером</div>
+type Props = {
+  message: string;
+};
+
+const Error = ({ message }: Props) => (
+  <div className={styles.error}>{message}</div>
 );
 
 export default Error;

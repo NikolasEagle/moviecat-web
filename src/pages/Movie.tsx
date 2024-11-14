@@ -2,22 +2,40 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./Movie.module.scss";
 
+import TopPanel from "../components/movie/TopPanel.tsx";
 import Description from "../components/movie/Description.tsx";
-import Trailer from "../components/movie/Trailer.tsx";
 import Player from "../components/movie/Player.tsx";
 
-import MovieContext from "../contexts/MovieContext.tsx";
+import MovieContext, { contextType } from "../contexts/MovieContext.tsx";
 
 import { useParams } from "react-router-dom";
 
 import Error from "../components/additional/Error.tsx";
 import Download from "../components/additional/Download.tsx";
-import TopPanel from "../components/movie/TopPanel.tsx";
 
 const Movie = () => {
   let { movie_id } = useParams();
 
-  let [movieData, setMovieData] = useState<any>();
+  let [movieData, setMovieData] = useState<contextType["movieData"]>({
+    name_russian: null,
+    name_original: null,
+    year: null,
+    country_ru: null,
+    budget: null,
+    persons: [],
+    genres: [],
+    description: null,
+    kinopoisk_id: null,
+    big_poster: null,
+    small_poster: null,
+    age_restriction: null,
+    rating_kp: null,
+    rating_imdb: null,
+  });
+
+  let [movieContent, setMovieContent] = useState<React.JSX.Element>(
+    <Download />
+  );
 
   useEffect(() => {
     generatePage();
@@ -27,28 +45,27 @@ const Movie = () => {
     let url = `https://kinobd.xyz/api/films/${movie_id}`;
 
     try {
-      let response = await fetch(url);
+      let response: Response = await fetch(url);
 
-      let body = await response.json();
+      let body: contextType["movieData"] = await response.json();
 
       setMovieData(body);
+
+      setMovieContent(
+        <div className={styles.movie}>
+          <TopPanel />
+          <Description />
+          <Player />
+        </div>
+      );
     } catch (error) {
-      setMovieData(<Error />);
+      setMovieContent(<Error message={"Ошибка подключения к серверу API"} />);
     }
   }
 
   return (
     <MovieContext.Provider value={{ movieData }}>
-      {movieData ? (
-        <div className={styles.movie}>
-          <TopPanel />
-          <Description />
-
-          <Player />
-        </div>
-      ) : (
-        <Download />
-      )}
+      {movieContent}
     </MovieContext.Provider>
   );
 };

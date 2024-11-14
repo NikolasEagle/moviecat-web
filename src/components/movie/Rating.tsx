@@ -19,7 +19,7 @@ const Rating = () => {
       {context.movieData.rating_kp && (
         <div className={styles.kp}>
           <div></div>
-          <p style={{ color: "orange" }}>
+          <p>
             <strong>{context.movieData.rating_kp}</strong>
           </p>
         </div>
@@ -27,7 +27,7 @@ const Rating = () => {
       {context.movieData.rating_imdb && (
         <div className={styles.imdb}>
           <div></div>
-          <p style={{ color: "yellow" }}>
+          <p>
             <strong>{context.movieData.rating_imdb}</strong>
           </p>
         </div>

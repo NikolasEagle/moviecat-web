@@ -39,7 +39,7 @@ const Main = () => {
     }
 
     try {
-      let response = await fetch(url);
+      let response: Response = await fetch(url);
 
       let body: {
         data:
@@ -87,7 +87,7 @@ const Main = () => {
         />,
       ]);
     } catch (error) {
-      setMovieCards(<Error />);
+      setMovieCards(<Error message={"Ошибка подключения к серверу API"} />);
     }
   }
 

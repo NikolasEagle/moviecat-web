@@ -7,6 +7,7 @@ import FormRegister from "../components/register/FormRegister.tsx";
 import RegisterContext from "../contexts/RegisterContext.tsx";
 
 import Download from "../components/additional/Download.tsx";
+import Error from "../components/additional/Error.tsx";
 
 import { useNavigate } from "react-router-dom";
 
@@ -21,12 +22,13 @@ const Register = () => {
 
   const [content, setContent] = useState<React.JSX.Element>(<FormRegister />);
 
-  async function sendReq(event: any) {
+  async function sendReq(event: React.ChangeEvent<HTMLFormElement>) {
     setContent(<Download />);
+
     event.preventDefault();
 
     try {
-      let response = await fetch("/register", {
+      let response: Response = await fetch("/register", {
         method: "POST",
         body: JSON.stringify({
           email: email,
@@ -58,14 +60,17 @@ const Register = () => {
         setContent(
           <>
             <FormRegister />,
-            <p style={{ color: "red" }}>
-              Пользователь с таким email уже существует
-            </p>
+            <Error message={"Пользователь с таким email уже существует"} />
           </>
         );
       }
     } catch (error) {
-      console.log(error);
+      setContent(
+        <>
+          <FormRegister />,
+          <Error message={"Ошибка подключения к серверу"} />
+        </>
+      );
     }
   }
   return (
