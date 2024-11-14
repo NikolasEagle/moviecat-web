@@ -1,16 +1,16 @@
+import React, { useContext } from "react";
+
 import styles from "./SearchButton.module.scss";
 
-import { useContext } from "react";
-
-import MainContext from "../../contexts/MainContext.js";
+import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
 const SearchButton = () => {
-  const context = useContext(MainContext);
+  const context = useContext(MainContext) as contextType;
 
   return (
     <button
       className={styles.search_button}
-      onClick={(event) => {
+      onClick={() => {
         if (context.searchValue) {
           context.navigate(`/search/${context.searchValue}/pages/1`);
         } else {

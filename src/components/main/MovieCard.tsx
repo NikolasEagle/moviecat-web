@@ -2,27 +2,53 @@ import React, { useContext } from "react";
 
 import styles from "./MovieCard.module.scss";
 
-import MainContext, { contextType } from "../../contexts/MainContext.js";
+import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
-const MovieCard = ({ id, year, rating, name, poster }) => {
+type Props = {
+  movie: {
+    id: number;
+
+    year: string | null;
+
+    rating_kp: string | null;
+
+    rating_imdb: string | null;
+
+    small_poster: string | null;
+
+    big_poster: string | null;
+
+    name_original: string | null;
+
+    name_russian: string | null;
+  };
+};
+
+const MovieCard = ({ movie }: Props) => {
   const context = useContext(MainContext) as contextType;
 
   return (
     <div
       tabIndex={0}
       className={styles.card}
-      onClick={() => context.navigate(`/movies/${id}`)}
+      onClick={() => context.navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
-        {year && <div className={styles.year}>{year}</div>}
-        {rating && <div className={styles.rating}>{rating}</div>}
+        {movie.year && <div className={styles.year}>{movie.year}</div>}
+        {(movie.rating_kp || movie.rating_imdb) && (
+          <div className={styles.rating}>
+            {movie.rating_kp || movie.rating_imdb}
+          </div>
+        )}
       </div>
 
-      <img src={poster} />
+      <img src={movie.small_poster || movie.big_poster || "/default.png"} />
 
       <div className={styles.gradient}></div>
 
-      <div className={styles.name}>{name}</div>
+      <div className={styles.name}>
+        {movie.name_russian || movie.name_original}
+      </div>
     </div>
   );
 };

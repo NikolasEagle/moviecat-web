@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./Main.module.scss";
 
@@ -9,8 +9,6 @@ import MovieCardsPanel from "../components/main/MovieCardsPanel.tsx";
 import MovieCard from "../components/main/MovieCard.tsx";
 import PageButtonsPanel from "../components/main/PageButtonsPanel.tsx";
 
-import { useState } from "react";
-
 import MovieContext from "../contexts/MainContext.tsx";
 
 import { useParams, useNavigate } from "react-router-dom";
@@ -19,9 +17,9 @@ import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
 
 const Main = () => {
-  let { page_id, query } = useParams();
+  const navigate = useNavigate();
 
-  let navigate = useNavigate();
+  let { page_id, query } = useParams();
 
   let [searchValue, setSearchValue] = useState<string>("");
 
@@ -43,29 +41,52 @@ const Main = () => {
     try {
       let response = await fetch(url);
 
-      let body = await response.json();
-
-      let data = body.data;
+      let body: {
+        data:
+          | {
+              id: number;
+              year: string | null;
+              rating_kp: string | null;
+              rating_imdb: string | null;
+              small_poster: string | null;
+              big_poster: string | null;
+              name_original: string | null;
+              name_russian: string | null;
+            }[]
+          | [];
+        current_page: number;
+        prev_page_url: string | null;
+        next_page_url: string | null;
+      } = await response.json();
 
       setMovieCards([
-        <ResultsInfo query={query} data={data} />,
-        <PageNumber currentPage={data.length ? body.current_page : null} />,
-        ...data.map((movie: any) => (
-          <MovieCard
-            id={movie.id}
-            year={movie.year}
-            rating={movie.rating_kp || movie.rating_imdb || null}
-            name={movie.name_russian || movie.name_original}
-            poster={movie.small_poster || movie.big_poster || "/default.png"}
-          />
-        )),
+        <ResultsInfo query={query} data={body.data} />,
+        <PageNumber currentPage={body.current_page} data={body.data} />,
+        ...body.data.map(
+          (movie: {
+            id: number;
+
+            year: string | null;
+
+            rating_kp: string | null;
+
+            rating_imdb: string | null;
+
+            small_poster: string | null;
+
+            big_poster: string | null;
+
+            name_original: string | null;
+
+            name_russian: string | null;
+          }) => <MovieCard movie={movie} />
+        ),
         <PageButtonsPanel
           prev_page={body.prev_page_url}
           next_page={body.next_page_url}
         />,
       ]);
     } catch (error) {
-      console.log(error.message);
       setMovieCards(<Error />);
     }
   }

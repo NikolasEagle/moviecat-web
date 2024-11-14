@@ -21,7 +21,7 @@ const Register = () => {
 
   const [content, setContent] = useState<React.JSX.Element>(<FormRegister />);
 
-  async function sendReq(event: Event) {
+  async function sendReq(event: any) {
     setContent(<Download />);
     event.preventDefault();
 

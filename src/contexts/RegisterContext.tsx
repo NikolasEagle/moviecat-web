@@ -1,7 +1,7 @@
 import React, { Dispatch } from "react";
 
-type contextType = {
-  sendReq: (event: Event) => Promise<void>;
+export type contextType = {
+  sendReq: (event: any) => Promise<void>;
   setEmail: Dispatch<string>;
   email: string;
   setName: Dispatch<string>;

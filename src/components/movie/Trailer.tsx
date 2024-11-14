@@ -1,6 +1,6 @@
-import styles from "./Trailer.module.scss";
+import React, { useContext } from "react";
 
-import { useContext } from "react";
+import styles from "./Trailer.module.scss";
 
 import MovieContext from "../../contexts/MovieContext.js";
 
@@ -13,11 +13,9 @@ const Trailer = () => {
 
       <iframe
         id="ytplayer"
-        type="text/html"
         height="100%"
         width="100%"
-        src={context.trailer}
-        frameborder="0"
+        src={context?.movieData.trailer}
         allowFullScreen
       ></iframe>
     </div>

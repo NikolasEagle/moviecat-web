@@ -1,25 +1,23 @@
-import styles from "./Movie.module.scss";
-
 import React, { useEffect, useState } from "react";
 
-import Description from "../components/movie/Description.js";
-import Trailer from "../components/movie/Trailer.js";
-import Player from "../components/movie/Player.js";
+import styles from "./Movie.module.scss";
 
-import MovieContext from "../contexts/MovieContext.js";
+import Description from "../components/movie/Description.tsx";
+import Trailer from "../components/movie/Trailer.tsx";
+import Player from "../components/movie/Player.tsx";
+
+import MovieContext from "../contexts/MovieContext.tsx";
 
 import { useParams } from "react-router-dom";
 
-import Error from "../components/additional/Error.js";
-import Download from "../components/additional/Download.js";
-import TopPanel from "../components/movie/TopPanel.js";
+import Error from "../components/additional/Error.tsx";
+import Download from "../components/additional/Download.tsx";
+import TopPanel from "../components/movie/TopPanel.tsx";
 
 const Movie = () => {
   let { movie_id } = useParams();
 
-  let [movieData, setMovieData] = useState<
-    React.JSX.Element | React.JSX.Element[]
-  >([]);
+  let [movieData, setMovieData] = useState<any>();
 
   useEffect(() => {
     generatePage();
@@ -40,7 +38,7 @@ const Movie = () => {
   }
 
   return (
-    <MovieContext.Provider value={movieData}>
+    <MovieContext.Provider value={{ movieData }}>
       {movieData ? (
         <div className={styles.movie}>
           <TopPanel />

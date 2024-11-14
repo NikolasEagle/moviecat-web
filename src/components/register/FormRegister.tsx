@@ -1,11 +1,13 @@
+import React, { useContext } from "react";
+
 import "./FormRegister.module.scss";
 
-import { useContext } from "react";
-
-import RegisterContext from "../../contexts/RegisterContext";
+import RegisterContext, {
+  contextType,
+} from "../../contexts/RegisterContext.tsx";
 
 const FormRegister = () => {
-  const context = useContext(RegisterContext);
+  const context = useContext(RegisterContext) as contextType;
 
   return (
     <>

@@ -4,60 +4,62 @@ import styles from "./PageButtonsPanel.module.scss";
 
 import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
-import { useNavigate } from "react-router-dom";
+type Props = {
+  prev_page: string | null;
+  next_page: string | null;
+};
 
-const PageButtonsPanel = ({ prev_page, next_page }) => {
+const PageButtonsPanel = ({ prev_page, next_page }: Props) => {
   const context = useContext(MainContext) as contextType;
-
-  const navigate = useNavigate();
 
   return (
     <nav className={styles.panel}>
-      {prev_page ? (
+      {prev_page && (
         <button
           onClick={() => {
             if (context.query) {
-              navigate(`/search/${context.query}/pages/1`);
+              context.navigate(`/search/${context.query}/pages/1`);
             } else {
-              navigate(`/pages/1`);
+              context.navigate(`/pages/1`);
             }
           }}
         >
-          В начало
+          {" "}
+          В начало{" "}
         </button>
-      ) : null}
+      )}
 
-      {prev_page ? (
+      {prev_page && (
         <button
           onClick={() => {
             if (context.query) {
-              navigate(
+              context.navigate(
                 `/search/${context.query}/pages/${Number(context.page_id) - 1}`
               );
             } else {
-              navigate(`/pages/${Number(context.page_id) - 1}`);
+              context.navigate(`/pages/${Number(context.page_id) - 1}`);
             }
           }}
         >
           &lt;
         </button>
-      ) : null}
+      )}
 
-      {next_page ? (
+      {next_page && (
         <button
           onClick={() => {
             if (context.query) {
-              navigate(
+              context.navigate(
                 `/search/${context.query}/pages/${Number(context.page_id) + 1}`
               );
             } else {
-              navigate(`/pages/${Number(context.page_id) + 1}`);
+              context.navigate(`/pages/${Number(context.page_id) + 1}`);
             }
           }}
         >
           &gt;
         </button>
-      ) : null}
+      )}
     </nav>
   );
 };
