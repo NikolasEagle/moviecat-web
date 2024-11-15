@@ -40,18 +40,22 @@ const App = () => {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  });
 
   return (
     <AuthContext.Provider value={{ checkAuth, setAuth, auth }}>
       <Router basename="/">
         <Routes>
-          <Route element={conn ? <Outlet /> : <Navigate to={"/error"} />}>
-            <Route element={!auth ? <Outlet /> : <Navigate to={"/"} />}>
+          <Route
+            element={conn ? <Outlet /> : <Navigate to={"/error"} replace />}
+          >
+            <Route element={!auth ? <Outlet /> : <Navigate to={"/"} replace />}>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
             </Route>
-            <Route element={auth ? <Outlet /> : <Navigate to={"/login"} />}>
+            <Route
+              element={auth ? <Outlet /> : <Navigate to={"/login"} replace />}
+            >
               <Route path="/pages/:page_id" element={<Main />}></Route>
               <Route
                 path="/search/:query/pages/:page_id"
@@ -65,7 +69,7 @@ const App = () => {
               element={<Navigate to={"/pages/1"} replace />}
             ></Route>
           </Route>
-          <Route element={!conn ? <Outlet /> : <Navigate to={"/"} />}>
+          <Route element={!conn ? <Outlet /> : <Navigate to={"/"} replace />}>
             <Route path="/error" element={<ErrorPage status={500} />}></Route>
           </Route>
         </Routes>

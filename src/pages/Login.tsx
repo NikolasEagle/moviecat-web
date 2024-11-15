@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import styles from "./Login.module.scss";
 
@@ -9,8 +9,6 @@ import LoginContext from "../contexts/LoginContext.tsx";
 
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
-
-import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const context = useContext(AuthContext) as contextTypeAuth;

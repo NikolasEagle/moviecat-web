@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import styles from "./Register.module.scss";
 
 import FormRegister from "../components/register/FormRegister.tsx";
 
+import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import RegisterContext from "../contexts/RegisterContext.tsx";
 
 import Download from "../components/additional/Download.tsx";

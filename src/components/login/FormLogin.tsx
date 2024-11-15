@@ -6,8 +6,12 @@ import LoginContext, { contextType } from "../../contexts/LoginContext.tsx";
 
 import Header from "../additional/Header.tsx";
 
+import { Link, useNavigate } from "react-router-dom";
+
 const FormLogin = () => {
   const context = useContext(LoginContext) as contextType;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -35,7 +39,7 @@ const FormLogin = () => {
         />
         <button type="submit">Войти</button>
         <p>
-          Не зарегистрированы? <a href="/register">Регистрация</a>
+          Не зарегистрированы? <Link to="/register">Регистрация</Link>
         </p>
       </form>
     </>
