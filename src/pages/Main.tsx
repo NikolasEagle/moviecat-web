@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import styles from "./Main.module.scss";
 
@@ -9,6 +9,7 @@ import MovieCardsPanel from "../components/main/MovieCardsPanel.tsx";
 import MovieCard from "../components/main/MovieCard.tsx";
 import PageButtonsPanel from "../components/main/PageButtonsPanel.tsx";
 
+import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
 
 import { useParams, useNavigate } from "react-router-dom";
@@ -17,6 +18,12 @@ import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
 
 const Main = () => {
+  const context = useContext(AuthContext) as contextTypeAuth;
+
+  useEffect(() => {
+    context.checkAuth();
+  });
+
   const navigate = useNavigate();
 
   let { page_id, query } = useParams();

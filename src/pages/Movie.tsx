@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import styles from "./Movie.module.scss";
 
@@ -6,6 +6,7 @@ import TopPanel from "../components/movie/TopPanel.tsx";
 import Description from "../components/movie/Description.tsx";
 import Player from "../components/movie/Player.tsx";
 
+import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext, { contextType } from "../contexts/MovieContext.tsx";
 
 import { useParams } from "react-router-dom";
@@ -14,6 +15,12 @@ import Error from "../components/additional/Error.tsx";
 import Download from "../components/additional/Download.tsx";
 
 const Movie = () => {
+  const context = useContext(AuthContext) as contextTypeAuth;
+
+  useEffect(() => {
+    context.checkAuth();
+  });
+
   let { movie_id } = useParams();
 
   let [movieData, setMovieData] = useState<contextType["movieData"]>({

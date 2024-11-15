@@ -12,7 +12,11 @@ const FormRegister = () => {
   return (
     <>
       <h2>Запрос на регистрацию</h2>
-      <form onSubmit={(event) => context.sendReq(event)}>
+      <form
+        onSubmit={(event: React.ChangeEvent<HTMLFormElement>) =>
+          context.sendReq(event)
+        }
+      >
         <input
           type="text"
           name="email"

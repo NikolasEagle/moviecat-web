@@ -63,6 +63,13 @@ const Register = () => {
             <Error message={"Пользователь с таким email уже существует"} />
           </>
         );
+      } else if (response.status === 500) {
+        setContent(
+          <>
+            <FormRegister />
+            <Error message={"Ошибка подключения к серверу"} />
+          </>
+        );
       }
     } catch (error) {
       setContent(

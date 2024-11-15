@@ -4,7 +4,7 @@ import styles from "./SearchField.module.scss";
 
 import MainContext, { contextType } from "../../contexts/MainContext.tsx";
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const SearchField = () => {
   const context = useContext(MainContext) as contextType;
@@ -20,9 +20,11 @@ const SearchField = () => {
       onKeyDown={(event) => {
         if (event.key === "Enter") {
           if (context.searchValue) {
-            navigate(`/search/${context.searchValue}/pages/1`);
+            navigate(`/search/${context.searchValue}/pages/1`, {
+              replace: true,
+            });
           } else {
-            navigate(`/pages/1`);
+            navigate(`/pages/1`, { replace: true });
           }
           context.setSearchValue("");
         }
