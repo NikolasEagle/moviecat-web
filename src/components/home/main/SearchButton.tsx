@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import styles from "./SearchButton.module.scss";
 
-import MainContext, { contextType } from "../../contexts/MainContext.tsx";
+import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
 
 const SearchButton = () => {
   const context = useContext(MainContext) as contextType;

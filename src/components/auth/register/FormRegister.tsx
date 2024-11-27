@@ -4,7 +4,7 @@ import "./FormRegister.module.scss";
 
 import RegisterContext, {
   contextType,
-} from "../../contexts/RegisterContext.tsx";
+} from "../../../contexts/RegisterContext.tsx";
 
 const FormRegister = () => {
   const context = useContext(RegisterContext) as contextType;

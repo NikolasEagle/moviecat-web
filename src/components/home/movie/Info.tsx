@@ -4,7 +4,7 @@ import styles from "./Info.module.scss";
 
 import Rating from "./Rating.tsx";
 
-import MovieContext, { contextType } from "../../contexts/MovieContext.tsx";
+import MovieContext, { contextType } from "../../../contexts/MovieContext.tsx";
 
 const Info = () => {
   const context = useContext(MovieContext) as contextType;

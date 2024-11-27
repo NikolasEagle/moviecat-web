@@ -2,13 +2,14 @@ import React, { useContext, useState, useEffect } from "react";
 
 import styles from "./Login.module.scss";
 
-import FormLogin from "../components/login/FormLogin.tsx";
+import FormLogin from "../components/auth/login/FormLogin.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import LoginContext from "../contexts/LoginContext.tsx";
 
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
@@ -38,7 +39,7 @@ const Login = () => {
       });
       if (response.status === 201) {
         setContent(<FormLogin />);
-        context.setAuth(true);
+        context.setToken(true);
       } else if (response.status === 401) {
         setContent(
           <>

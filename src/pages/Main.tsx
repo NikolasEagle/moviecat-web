@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 
 import styles from "./Main.module.scss";
 
-import SearchPanel from "../components/main/SearchPanel.tsx";
-import ResultsInfo from "../components/main/ResultsInfo.tsx";
-import PageNumber from "../components/main/PageNumber.tsx";
-import MovieCardsPanel from "../components/main/MovieCardsPanel.tsx";
-import MovieCard from "../components/main/MovieCard.tsx";
-import PageButtonsPanel from "../components/main/PageButtonsPanel.tsx";
+import SearchPanel from "../components/home/main/SearchPanel.tsx";
+import ResultsInfo from "../components/home/main/ResultsInfo.tsx";
+import PageNumber from "../components/home/main/PageNumber.tsx";
+import MovieCardsPanel from "../components/home/main/MovieCardsPanel.tsx";
+import MovieCard from "../components/home/main/MovieCard.tsx";
+import PageButtonsPanel from "../components/home/main/PageButtonsPanel.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
@@ -19,10 +19,6 @@ import Error from "../components/additional/Error.tsx";
 
 const Main = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
-
-  useEffect(() => {
-    context.checkAuth();
-  });
 
   const navigate = useNavigate();
 

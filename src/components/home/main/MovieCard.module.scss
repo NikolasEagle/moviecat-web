@@ -21,7 +21,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 15px cyan;
+    box-shadow: 0 0 15px darkorchid;
     transform: scale(1.1);
     outline: none;
   }
@@ -34,7 +34,7 @@
     justify-content: space-between;
 
     .rating {
-      color: cyan;
+      color: darkorchid;
       text-align: center;
       margin: 20px 20px 0 0;
     }

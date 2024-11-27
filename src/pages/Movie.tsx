@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 
 import styles from "./Movie.module.scss";
 
-import TopPanel from "../components/movie/TopPanel.tsx";
-import Description from "../components/movie/Description.tsx";
-import Player from "../components/movie/Player.tsx";
+import TopPanel from "../components/home/movie/TopPanel.tsx";
+import Description from "../components/home/movie/Description.tsx";
+import Player from "../components/home/movie/Player.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext, { contextType } from "../contexts/MovieContext.tsx";
@@ -18,8 +18,8 @@ const Movie = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
 
   useEffect(() => {
-    context.checkAuth();
-  });
+    generatePage();
+  }, []);
 
   let { movie_id } = useParams();
 
@@ -43,10 +43,6 @@ const Movie = () => {
   let [movieContent, setMovieContent] = useState<React.JSX.Element>(
     <Download />
   );
-
-  useEffect(() => {
-    generatePage();
-  }, []);
 
   async function generatePage() {
     let url = `https://kinobd.xyz/api/films/${movie_id}`;

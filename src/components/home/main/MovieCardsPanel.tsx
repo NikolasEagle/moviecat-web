@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 
 import styles from "./MovieCardsPanel.module.scss";
 
-import MainContext, { contextType } from "../../contexts/MainContext.tsx";
+import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
 
 function MovieCardsPanel() {
   const context = useContext(MainContext) as contextType;

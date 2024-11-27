@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import styles from "./Register.module.scss";
 
-import FormRegister from "../components/register/FormRegister.tsx";
+import FormRegister from "../components/auth/register/FormRegister.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import RegisterContext from "../contexts/RegisterContext.tsx";
@@ -13,6 +13,8 @@ import Error from "../components/additional/Error.tsx";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const context = useContext(AuthContext) as contextTypeAuth;
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");

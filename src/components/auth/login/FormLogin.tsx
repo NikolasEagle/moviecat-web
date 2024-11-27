@@ -2,16 +2,14 @@ import React, { useContext } from "react";
 
 import "./FormLogin.module.scss";
 
-import LoginContext, { contextType } from "../../contexts/LoginContext.tsx";
+import LoginContext, { contextType } from "../../../contexts/LoginContext.tsx";
 
-import Header from "../additional/Header.tsx";
+import Header from "../../additional/Header.tsx";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const FormLogin = () => {
   const context = useContext(LoginContext) as contextType;
-
-  const navigate = useNavigate();
 
   return (
     <>

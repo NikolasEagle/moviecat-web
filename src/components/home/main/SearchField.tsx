@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import styles from "./SearchField.module.scss";
 
-import MainContext, { contextType } from "../../contexts/MainContext.tsx";
+import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
 
 import { Navigate, useNavigate } from "react-router-dom";
 
