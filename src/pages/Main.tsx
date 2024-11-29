@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import styles from "./Main.module.scss";
 
-import SearchPanel from "../components/home/main/SearchPanel.tsx";
+import TopPanel from "../components/home/main/TopPanel.tsx";
 import ResultsInfo from "../components/home/main/ResultsInfo.tsx";
 import PageNumber from "../components/home/main/PageNumber.tsx";
 import MovieCardsPanel from "../components/home/main/MovieCardsPanel.tsx";
@@ -108,7 +108,7 @@ const Main = () => {
           setMovieCards,
         }}
       >
-        <SearchPanel />
+        <TopPanel />
         <MovieCardsPanel />
       </MovieContext.Provider>
     </div>

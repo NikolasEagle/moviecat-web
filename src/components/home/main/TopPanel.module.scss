@@ -1,0 +1,76 @@
+.top_panel {
+  position: fixed;
+
+  top: 0;
+
+  display: flex;
+
+  box-sizing: border-box;
+
+  z-index: 2;
+
+  background: #111;
+
+  flex-direction: row;
+
+  gap: 15px;
+
+  width: 100%;
+
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  @media (max-width: 575px) {
+    width: 100%;
+    padding: 15px 20px 15px;
+  }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    width: 100%;
+    padding: 15px 20px 15px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100%;
+    padding: 15px 20px 15px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1999px) {
+    width: 880px;
+    padding: 15px 0 15px;
+  }
+  @media (min-width: 2000px) {
+    width: 880px;
+    padding: 15px 0 15px;
+  }
+}
+
+.buttons_panel {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 15px;
+
+  @media screen and (max-width: 575px) {
+    order: 1;
+  }
+
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    order: 1;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    order: 2;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1999px) {
+    order: 2;
+  }
+  @media screen and (min-width: 2000px) {
+    order: 2;
+  }
+}

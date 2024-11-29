@@ -42,7 +42,7 @@ const MovieCard = ({ movie }: Props) => {
         )}
       </div>
 
-      <img src={movie.small_poster || movie.big_poster || "/default.png"} />
+      <img src={movie.small_poster || movie.big_poster || "/no_image.png"} />
 
       <div className={styles.gradient}></div>
 

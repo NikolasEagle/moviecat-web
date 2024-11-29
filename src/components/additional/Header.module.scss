@@ -8,11 +8,36 @@
 }
 
 .header {
-  color: darkorchid;
+  display: flex;
 
-  margin: 0;
+  order: 1;
 
-  animation: 2s infinite alternate blur ease-in-out;
+  flex-direction: row;
 
-  text-align: left;
+  gap: 8px;
+
+  align-items: center;
+
+  h1 {
+    color: darkorchid;
+
+    margin: 0;
+
+    animation: 2s infinite alternate blur ease-in-out;
+
+    text-align: left;
+
+    width: 143.59px;
+  }
+
+  .logo {
+    background: url("./logo.svg");
+    background-size: cover;
+    box-sizing: border-box;
+    height: 43px;
+    width: 43px;
+    background-repeat: no-repeat;
+
+    display: inline;
+  }
 }

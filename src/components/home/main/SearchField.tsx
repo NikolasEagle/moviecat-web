@@ -4,7 +4,7 @@ import styles from "./SearchField.module.scss";
 
 import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SearchField = () => {
   const context = useContext(MainContext) as contextType;

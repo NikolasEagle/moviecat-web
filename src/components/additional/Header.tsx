@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./Header.module.scss";
 
-const Header = () => <h1 className={styles.header}>MovieCat</h1>;
+const Header = () => (
+  <div className={styles.header}>
+    <h1>Moviecat</h1>
+    <div className={styles.logo}></div>
+  </div>
+);
 
 export default Header;

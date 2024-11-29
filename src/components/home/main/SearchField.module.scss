@@ -1,6 +1,8 @@
 .search {
   height: 50px;
 
+  width: calc(100% - 65px);
+
   padding: 0 20px 0 20px;
 
   box-sizing: border-box;
@@ -29,24 +31,5 @@
 
   &:hover {
     box-shadow: 0 0 25px darkorchid;
-  }
-
-  @media screen and (max-width: 575px) {
-    width: calc(100% - 80px);
-  }
-
-  @media screen and (min-width: 576px) and (max-width: 767px) {
-    width: calc(100% - 80px);
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 991px) {
-    width: calc(100% - 250px);
-  }
-
-  @media screen and (min-width: 992px) and (max-width: 1999px) {
-    width: calc(100% - 250px);
-  }
-  @media screen and (min-width: 2000px) {
-    width: calc(100% - 250px);
   }
 }

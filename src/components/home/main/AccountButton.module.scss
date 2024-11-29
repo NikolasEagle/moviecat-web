@@ -1,0 +1,38 @@
+.account_button {
+  cursor: pointer;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-color: #111;
+  background-image: url(account.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus {
+    text-shadow: 0 0 15px darkorchid;
+    transform: scale(1.1);
+    outline: none;
+  }
+
+  @media screen and (max-width: 575px) {
+    order: -1;
+  }
+
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    order: -1;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    order: 0;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1999px) {
+    order: 0;
+  }
+  @media screen and (min-width: 2000px) {
+    order: 0;
+  }
+}

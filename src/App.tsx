@@ -8,13 +8,23 @@ import AuthContext from "./contexts/AuthContext.tsx";
 import Download from "./components/additional/Download.tsx";
 
 const App = () => {
-  const [token, setToken] = useState<boolean | null>(null);
+  const [token, setToken] = useState<boolean | null>(true);
+
+  const [name, setName] = useState<string>("");
+
+  const [surName, setSurName] = useState<string>("");
 
   async function checkAuth() {
     let response: Response = await fetch("/login", {
       method: "POST",
     });
     if (response.status === 201) {
+      let { name, surname } = await response.json();
+
+      setName(name);
+
+      setSurName(surname);
+
       setToken(true);
     } else if (response.status === 401) {
       setToken(false);
@@ -29,7 +39,7 @@ const App = () => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ setToken }}>
+    <AuthContext.Provider value={{ setToken, name, surName }}>
       <Router>
         {token === null ? (
           <Routes>

@@ -13,7 +13,7 @@ const Poster = () => {
         src={
           context.movieData.big_poster ||
           context.movieData.small_poster ||
-          "/default.png"
+          "/no_image.png"
         }
       />
     </div>
