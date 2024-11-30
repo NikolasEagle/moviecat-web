@@ -4,10 +4,9 @@ import styles from "./Main.module.scss";
 
 import TopPanel from "../components/home/main/TopPanel.tsx";
 import ResultsInfo from "../components/home/main/ResultsInfo.tsx";
-import PageNumber from "../components/home/main/PageNumber.tsx";
 import MovieCardsPanel from "../components/home/main/MovieCardsPanel.tsx";
 import MovieCard from "../components/home/main/MovieCard.tsx";
-import PageButtonsPanel from "../components/home/main/PageButtonsPanel.tsx";
+import ShowMoreButton from "../components/home/main/ShowMoreButton.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
@@ -20,25 +19,25 @@ import Error from "../components/additional/Error.tsx";
 const Main = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
 
-  const navigate = useNavigate();
-
-  let { page_id, query } = useParams();
+  let { query } = useParams();
 
   let [searchValue, setSearchValue] = useState<string>("");
 
-  let [movieCards, setMovieCards] = useState<
-    React.JSX.Element[] | React.JSX.Element
-  >([]);
+  let [movieCards, setMovieCards] = useState<React.JSX.Element[]>([]);
 
-  async function generatePage() {
-    setMovieCards(<Download />);
+  let [result, setResult] = useState<string | undefined>(undefined);
+
+  const navigate = useNavigate();
+
+  async function generatePage(page_id: number) {
+    setMovieCards([...movieCards.slice(0, -1), <Download />]);
 
     let url: string;
 
     if (query) {
-      url = `https://kinobd.xyz/api/films/search/title?q=${query}&&page=${page_id}`;
+      url = `https://kinobd.xyz/api/films/search/title?q=${query}&page=${page_id}`;
     } else {
-      url = `https://kinobd.xyz/api/films?page=${page_id}`;
+      url = `https://kinobd.xyz/api/films/top?page=${page_id}`;
     }
 
     try {
@@ -63,8 +62,7 @@ const Main = () => {
       } = await response.json();
 
       setMovieCards([
-        <ResultsInfo query={query} data={body.data} />,
-        <PageNumber currentPage={body.current_page} data={body.data} />,
+        ...movieCards.slice(0, -1),
         ...body.data.map(
           (movie: {
             id: number;
@@ -84,26 +82,36 @@ const Main = () => {
             name_russian: string | null;
           }) => <MovieCard movie={movie} />
         ),
-        <PageButtonsPanel
-          prev_page={body.prev_page_url}
-          next_page={body.next_page_url}
-        />,
+        <ShowMoreButton next_page={body.next_page_url} />,
       ]);
+      setResult(query);
     } catch (error) {
-      setMovieCards(<Error message={"Ошибка подключения к серверу API"} />);
+      setMovieCards([<Error message={"Ошибка подключения к серверу API"} />]);
     }
+  }
+
+  function showMore(next_page: string) {
+    const params = new URLSearchParams(
+      next_page.slice(next_page.indexOf("?") + 1)
+    );
+
+    const page_id = Number(params.get("page"));
+
+    generatePage(page_id);
   }
 
   return (
     <div className={styles.main}>
       <MovieContext.Provider
         value={{
-          page_id,
           query,
           navigate,
           generatePage,
+          showMore,
           searchValue,
           setSearchValue,
+          result,
+          setResult,
           movieCards,
           setMovieCards,
         }}

@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styles from "./ResultsInfo.module.scss";
 
-type Props = {
-  query: string | undefined;
+import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
 
-  data: object[] | [];
-};
+const ResultsInfo = () => {
+  const context = useContext(MainContext) as contextType;
 
-const ResultsInfo = ({ query, data }: Props) =>
-  query ? (
+  return context.result ? (
     <h3 className={styles.results_info}>
-      {data.length
-        ? `Результаты по запросу - ${query}`
-        : `По запросу - ${query} - не найдено результатов`}
+      {context.movieCards.slice(0, -1).length
+        ? `Результаты по запросу - ${context.query}`
+        : `По запросу - ${context.query} - не найдено результатов`}
     </h3>
   ) : null;
+};
 
 export default ResultsInfo;

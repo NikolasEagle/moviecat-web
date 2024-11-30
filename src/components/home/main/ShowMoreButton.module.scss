@@ -1,0 +1,33 @@
+.show_more {
+  display: block;
+
+  text-decoration: none;
+
+  color: darkorchid;
+
+  background: none;
+
+  cursor: pointer;
+
+  text-align: center;
+
+  width: 100%;
+
+  padding: 15px;
+
+  font-size: 20px;
+
+  border: solid 1px darkorchid;
+
+  border-radius: 10px;
+
+  transition: 0.5s ease-in-out;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.01);
+
+    background: darkorchid;
+    color: #111;
+  }
+}

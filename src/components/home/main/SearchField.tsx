@@ -20,13 +20,14 @@ const SearchField = () => {
       onKeyDown={(event) => {
         if (event.key === "Enter") {
           if (context.searchValue) {
-            navigate(`/search/${context.searchValue}/pages/1`, {
-              replace: true,
+            navigate(`/search/${context.searchValue}`, {
+              replace: false,
             });
           } else {
-            navigate(`/pages/1`, { replace: true });
+            navigate(`/`, { replace: false });
           }
           context.setSearchValue("");
+          window.location.reload();
         }
       }}
     />

@@ -1,13 +1,13 @@
 .top_panel {
-  position: fixed;
+  position: sticky;
 
-  top: 0;
+  top: 0px;
 
   display: flex;
 
   box-sizing: border-box;
 
-  z-index: 2;
+  z-index: 5;
 
   background: #111;
 
@@ -23,28 +23,25 @@
 
   align-items: center;
 
+  padding: 20px 0 15px;
+
   @media (max-width: 575px) {
     width: 100%;
-    padding: 15px 20px 15px;
   }
 
   @media (min-width: 576px) and (max-width: 767px) {
     width: 100%;
-    padding: 15px 20px 15px;
   }
 
   @media (min-width: 768px) and (max-width: 991px) {
     width: 100%;
-    padding: 15px 20px 15px;
   }
 
   @media (min-width: 992px) and (max-width: 1999px) {
     width: 880px;
-    padding: 15px 0 15px;
   }
   @media (min-width: 2000px) {
     width: 880px;
-    padding: 15px 0 15px;
   }
 }
 

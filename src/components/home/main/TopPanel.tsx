@@ -6,6 +6,7 @@ import Header from "../../additional/Header.tsx";
 import SearchPanel from "./SearchPanel.tsx";
 import LogOutButton from "./LogOutButton.tsx";
 import AccountButton from "./AccountButton.tsx";
+import ResultsInfo from "./ResultsInfo.tsx";
 
 const TopPanel = () => (
   <div className={styles.top_panel}>
@@ -15,6 +16,7 @@ const TopPanel = () => (
       <AccountButton />
       <LogOutButton />
     </div>
+    <ResultsInfo />
   </div>
 );
 

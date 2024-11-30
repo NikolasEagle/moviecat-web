@@ -8,9 +8,8 @@ function MovieCardsPanel() {
   const context = useContext(MainContext) as contextType;
 
   useEffect(() => {
-    context.generatePage();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [context.query, context.page_id]);
+    context.generatePage(1);
+  }, [context.query]);
 
   return <div className={styles.panel}>{context.movieCards}</div>;
 }

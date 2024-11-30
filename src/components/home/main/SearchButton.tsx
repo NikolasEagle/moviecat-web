@@ -12,11 +12,12 @@ const SearchButton = () => {
       className={styles.search_button}
       onClick={() => {
         if (context.searchValue) {
-          context.navigate(`/search/${context.searchValue}/pages/1`);
+          context.navigate(`/search/${context.searchValue}`);
         } else {
-          context.navigate(`/pages/1`);
+          context.navigate(`/`);
         }
         context.setSearchValue("");
+        window.location.reload();
       }}
     ></button>
   );

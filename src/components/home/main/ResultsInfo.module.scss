@@ -1,7 +1,51 @@
 .results_info {
+  position: sticky;
+
+  top: 0px;
+
+  box-sizing: border-box;
+
   width: 100%;
 
   margin: 0;
 
   text-align: left;
+
+  font-size: 20px;
+
+  z-index: 5;
+
+  background: #111;
+
+  order: 5;
+
+  @media (max-width: 575px) {
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1999px) {
+    width: 880px;
+    padding: 0;
+  }
+  @media (min-width: 2000px) {
+    width: 880px;
+    padding: 0;
+  }
+
+  @media (top: 1px) {
+    background: red;
+  }
 }
