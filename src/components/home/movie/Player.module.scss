@@ -1,7 +1,11 @@
 .player {
-  display: flex;
-
-  flex-direction: column;
-
   width: 100%;
+
+  div {
+    border-radius: 20px;
+  }
+
+  .bottom_dUlwe {
+    background: rgba($color: #000000, $alpha: 0.6);
+  }
 }

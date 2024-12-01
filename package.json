@@ -17,6 +17,10 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
+    "react-virtualized": "^9.22.5",
+    "react-virtualized-auto-sizer": "^1.0.24",
+    "react-virtuoso": "^4.12.2",
+    "react-window": "^1.8.10",
     "sass": "^1.80.4",
     "typescript": "^5.6.3",
     "web-vitals": "^2.1.4"

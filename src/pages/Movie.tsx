@@ -41,7 +41,7 @@ const Movie = () => {
   });
 
   let [movieContent, setMovieContent] = useState<React.JSX.Element>(
-    <Download />
+    <Download height={"calc(85vh)"} />
   );
 
   async function generatePage() {

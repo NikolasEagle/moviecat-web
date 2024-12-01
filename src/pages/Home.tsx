@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Main from "./Main.tsx";
@@ -10,6 +10,7 @@ const Home = () => {
       <Route path="/" element={<Main />}></Route>
       <Route path="/search/:query" element={<Main />}></Route>
       <Route path="/movies/:movie_id" element={<Movie />}></Route>
+      <Route path="/login" element={<Navigate to={"/"} />}></Route>
     </Routes>
   );
 };

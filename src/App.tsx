@@ -8,11 +8,11 @@ import AuthContext from "./contexts/AuthContext.tsx";
 import Download from "./components/additional/Download.tsx";
 
 const App = () => {
-  const [token, setToken] = useState<boolean | null>(true);
+  const [token, setToken] = useState<boolean | null>(null);
 
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>("Name");
 
-  const [surName, setSurName] = useState<string>("");
+  const [surName, setSurName] = useState<string>("Surname");
 
   async function checkAuth() {
     let response: Response = await fetch("/login", {
@@ -31,6 +31,10 @@ const App = () => {
     }
   }
 
+  async function logout() {
+    await fetch("/logout", { method: "POST" });
+  }
+
   useEffect(() => {
     checkAuth();
     setInterval(() => {
@@ -39,11 +43,11 @@ const App = () => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ setToken, name, surName }}>
+    <AuthContext.Provider value={{ setToken, name, surName, logout }}>
       <Router>
         {token === null ? (
           <Routes>
-            <Route element={<Download />}></Route>
+            <Route element={<Download height={"calc(50vh + 50px)"} />}></Route>
           </Routes>
         ) : token ? (
           <Home />

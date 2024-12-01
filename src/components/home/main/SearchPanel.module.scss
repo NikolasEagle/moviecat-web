@@ -16,15 +16,15 @@
 
   @media screen and (min-width: 768px) and (max-width: 991px) {
     order: 1;
-    width: calc(100% - 201.6px - 105px);
+    width: calc(100% - 201.6px - 75px);
   }
 
   @media screen and (min-width: 992px) and (max-width: 1999px) {
     order: 1;
-    width: calc(100% - 201.6px - 105px);
+    width: calc(100% - 201.6px - 75px);
   }
   @media screen and (min-width: 2000px) {
     order: 1;
-    width: calc(100% - 201.6px - 105px);
+    width: calc(100% - 201.6px - 75px);
   }
 }

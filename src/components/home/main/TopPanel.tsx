@@ -14,7 +14,6 @@ const TopPanel = () => (
     <SearchPanel />
     <div className={styles.buttons_panel}>
       <AccountButton />
-      <LogOutButton />
     </div>
     <ResultsInfo />
   </div>

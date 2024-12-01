@@ -11,7 +11,7 @@ const Player = () => {
 
   return (
     <div className={styles.player}>
-      <h3>Смотреть онлайн</h3>
+      {false && <h3>Смотреть онлайн</h3>}
       <div
         data-kinopoisk={context.movieData.kinopoisk_id}
         id="kinobd"

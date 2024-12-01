@@ -11,11 +11,9 @@
 
   text-align: center;
 
-  width: 100%;
-
   padding: 15px;
 
-  font-size: 20px;
+  font-size: 15px;
 
   border: solid 1px darkorchid;
 
@@ -29,5 +27,27 @@
 
     background: darkorchid;
     color: #111;
+  }
+
+  @media screen and (max-width: 575px) {
+    width: 164px;
+  }
+
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    order: 1;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1999px) {
+    order: 1;
+    width: 100%;
+  }
+  @media screen and (min-width: 2000px) {
+    order: 1;
+    width: 100%;
   }
 }

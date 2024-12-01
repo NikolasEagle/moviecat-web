@@ -1,19 +1,22 @@
 .account_button {
+  position: relative;
   cursor: pointer;
   border: none;
-  width: 30px;
-  height: 30px;
-  background-color: #111;
+  width: 50px;
+  height: 50px;
+  background-color: darkorchid;
+  border-radius: 10px;
   background-image: url(account.svg);
-  background-size: contain;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.5s;
 
+  z-index: 10;
+
   &:hover,
   &:focus {
-    text-shadow: 0 0 15px darkorchid;
-    transform: scale(1.1);
+    box-shadow: 0 0 15px darkorchid;
     outline: none;
   }
 
@@ -35,4 +38,94 @@
   @media screen and (min-width: 2000px) {
     order: 0;
   }
+}
+
+.popup {
+  position: relative;
+
+  top: 50px;
+
+  right: 185px;
+
+  cursor: default;
+
+  width: 200px;
+
+  background: #111;
+
+  color: white;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  z-index: 9;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+
+  align-items: center;
+
+  &:hover {
+    transform: scale(1);
+  }
+
+  .main {
+    border-bottom: solid 1px #444;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 5px;
+
+    .avatar {
+      background: url("./avatar.svg");
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-position: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    p {
+      font-size: 15px;
+      text-align: left;
+      width: calc(100% - 60px);
+    }
+  }
+
+  .bottom {
+    a {
+      color: red;
+      cursor: pointer;
+
+      &:hover {
+        text-shadow: 0 0 15px red;
+      }
+    }
+  }
+}
+
+.shadow {
+  cursor: pointer;
+
+  position: fixed;
+
+  top: 0;
+
+  right: 0;
+
+  width: 100vw;
+
+  height: 100vh;
+
+  background: rgba($color: #000000, $alpha: 0.5);
+
+  z-index: 8;
 }

@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./Main.module.scss";
 
 import TopPanel from "../components/home/main/TopPanel.tsx";
-import ResultsInfo from "../components/home/main/ResultsInfo.tsx";
 import MovieCardsPanel from "../components/home/main/MovieCardsPanel.tsx";
 import MovieCard from "../components/home/main/MovieCard.tsx";
 import ShowMoreButton from "../components/home/main/ShowMoreButton.tsx";
+import ScrollUpButton from "../components/home/main/ScrollUpButton.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
@@ -30,7 +30,10 @@ const Main = () => {
   const navigate = useNavigate();
 
   async function generatePage(page_id: number) {
-    setMovieCards([...movieCards.slice(0, -1), <Download />]);
+    setMovieCards([
+      ...movieCards.slice(0, -1),
+      <Download height={!movieCards.length ? "calc(50vh + 50px)" : "20px"} />,
+    ]);
 
     let url: string;
 
@@ -99,7 +102,6 @@ const Main = () => {
 
     generatePage(page_id);
   }
-
   return (
     <div className={styles.main}>
       <MovieContext.Provider
@@ -118,6 +120,7 @@ const Main = () => {
       >
         <TopPanel />
         <MovieCardsPanel />
+        <ScrollUpButton />
       </MovieContext.Provider>
     </div>
   );
