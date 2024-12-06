@@ -8,7 +8,7 @@ import AuthContext from "./contexts/AuthContext.tsx";
 import Download from "./components/additional/Download.tsx";
 
 const App = () => {
-  const [token, setToken] = useState<boolean | null>(null);
+  const [token, setToken] = useState<boolean | null>(true);
 
   const [name, setName] = useState<string>("Name");
 

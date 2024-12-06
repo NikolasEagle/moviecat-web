@@ -1,74 +1,84 @@
-form {
+.form_login {
+  width: 100%;
+
   display: flex;
 
   flex-direction: column;
 
-  width: 100%;
-
   gap: 15px;
 
-  input {
-    height: 50px;
+  form {
+    display: flex;
 
-    padding: 0 20px 0 20px;
+    flex-direction: column;
 
-    box-sizing: border-box;
+    gap: 15px;
 
-    outline: none;
+    order: 5;
 
-    background: none;
+    input {
+      height: 50px;
 
-    border-radius: 10px;
+      padding: 0 20px 0 20px;
 
-    border: 2px solid #555;
+      box-sizing: border-box;
 
-    color: white;
-
-    transition: 0.5s;
-
-    font-size: 15px;
-
-    &:focus {
-      box-shadow: 0 0 25px darkorchid;
-    }
-
-    &::placeholder {
-      font-size: 15px;
-    }
-
-    &:hover {
-      box-shadow: 0 0 25px darkorchid;
-    }
-  }
-  a {
-    display: block;
-    color: cyan;
-    transition: 0.5s;
-    &:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 25px darkorchid;
-    }
-  }
-  button {
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    height: 50px;
-    background-color: darkorchid;
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: 0.5s;
-
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 15px darkorchid;
-      transform: scale(1.05);
       outline: none;
+
+      background: none;
+
+      border-radius: 10px;
+
+      border: 2px solid #555;
+
+      color: white;
+
+      transition: 0.5s;
+
+      font-size: 15px;
+
+      &:focus {
+        box-shadow: 0 0 25px darkorchid;
+      }
+
+      &::placeholder {
+        font-size: 15px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 25px darkorchid;
+      }
     }
-  }
-  p {
-    text-align: center;
-    margin: 0;
+    a {
+      display: block;
+      color: darkorchid;
+      transition: 0.5s;
+      &:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 25px darkorchid;
+      }
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      height: 50px;
+      background-color: darkorchid;
+      background-size: 40%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: 0.5s;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 15px darkorchid;
+        transform: scale(1.05);
+        outline: none;
+      }
+    }
+    p {
+      text-align: center;
+      margin: 0;
+    }
   }
 }

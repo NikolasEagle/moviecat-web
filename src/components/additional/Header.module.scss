@@ -14,9 +14,11 @@
 
   flex-direction: row;
 
-  gap: 8px;
+  gap: 15px;
 
   align-items: center;
+
+  justify-content: center;
 
   h1 {
     color: darkorchid;
@@ -26,16 +28,12 @@
     animation: 2s infinite alternate blur ease-in-out;
 
     text-align: left;
-
-    width: 143.59px;
   }
 
   .logo {
     background: url("./logo.svg");
     background-size: cover;
     box-sizing: border-box;
-    height: 43px;
-    width: 43px;
     background-repeat: no-repeat;
 
     @media (max-width: 575px) {
@@ -55,6 +53,38 @@
     }
     @media (min-width: 2000px) {
       display: block;
+    }
+  }
+}
+
+.header {
+  &.large {
+    gap: 15px;
+
+    h1 {
+      width: 215px;
+
+      font-size: 50px;
+    }
+
+    .logo {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  &.small {
+    gap: 9px;
+
+    h1 {
+      width: 135px;
+
+      font-size: 30px;
+    }
+
+    .logo {
+      height: 30px;
+      width: 30px;
     }
   }
 }

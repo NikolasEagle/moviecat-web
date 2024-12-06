@@ -29,25 +29,4 @@
   @media (min-width: 2000px) {
     width: 440px;
   }
-
-  h1 {
-    @media (max-width: 575px) {
-      font-size: 40px;
-    }
-
-    @media (min-width: 576px) and (max-width: 767px) {
-      font-size: 50px;
-    }
-
-    @media (min-width: 768px) and (max-width: 991px) {
-      font-size: 50px;
-    }
-
-    @media (min-width: 992px) and (max-width: 1999px) {
-      font-size: 50px;
-    }
-    @media (min-width: 2000px) {
-      font-size: 50px;
-    }
-  }
 }
