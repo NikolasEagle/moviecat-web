@@ -29,6 +29,10 @@ const Main = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    context.checkAuth();
+  }, []);
+
   async function generatePage(page_id: number) {
     setMovieCards([
       ...movieCards.slice(0, -1),
@@ -94,6 +98,8 @@ const Main = () => {
   }
 
   function showMore(next_page: string) {
+    context.checkAuth();
+
     const params = new URLSearchParams(
       next_page.slice(next_page.indexOf("?") + 1)
     );

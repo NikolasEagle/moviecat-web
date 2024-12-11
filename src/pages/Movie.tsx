@@ -18,6 +18,8 @@ const Movie = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
 
   useEffect(() => {
+    context.checkAuth();
+
     generatePage();
   }, []);
 

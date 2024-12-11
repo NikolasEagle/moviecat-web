@@ -8,7 +8,7 @@ import AuthContext from "./contexts/AuthContext.tsx";
 import Download from "./components/additional/Download.tsx";
 
 const App = () => {
-  const [token, setToken] = useState<boolean | null>(true);
+  const [token, setToken] = useState<boolean | null>(null);
 
   const [name, setName] = useState<string>("Name");
 
@@ -32,18 +32,17 @@ const App = () => {
   }
 
   async function logout() {
-    await fetch("/logout", { method: "POST" });
+    await fetch("/logout", { method: "POST", credentials: "same-origin" });
   }
 
   useEffect(() => {
     checkAuth();
-    setInterval(() => {
-      checkAuth();
-    }, 3000);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ setToken, name, surName, logout }}>
+    <AuthContext.Provider
+      value={{ checkAuth, setToken, name, surName, logout }}
+    >
       <Router>
         {token === null ? (
           <Routes>
