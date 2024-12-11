@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import "./FormRegister.module.scss";
+import styles from "./FormRegister.module.scss";
 
 import RegisterContext, {
   contextType,
@@ -43,7 +43,9 @@ const FormRegister = () => {
           value={context.surname}
           onChange={(event) => context.setSurname(event.target.value)}
         />
-        <button type="submit">Отправить запрос</button>
+        <button className={styles.submit} type="submit">
+          Отправить запрос
+        </button>
       </form>
     </>
   );

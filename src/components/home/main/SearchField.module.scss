@@ -22,7 +22,7 @@
   font-size: 15px;
 
   &:focus {
-    box-shadow: 0 0 25px darkorchid;
+    box-shadow: 0 0 25px rgba(0, 217, 231, 1);
   }
 
   &::placeholder {
@@ -30,6 +30,6 @@
   }
 
   &:hover {
-    box-shadow: 0 0 25px darkorchid;
+    box-shadow: 0 0 25px rgba(0, 217, 231, 1);
   }
 }

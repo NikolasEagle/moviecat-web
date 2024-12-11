@@ -4,7 +4,7 @@
   border: none;
   width: 50px;
   height: 50px;
-  background-color: darkorchid;
+  background-color: rgba(0, 217, 231, 1);
   border-radius: 10px;
   background-image: url(account.svg);
   background-size: 40%;
@@ -16,7 +16,7 @@
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 15px darkorchid;
+    box-shadow: 0 0 15px rgba(0, 217, 231, 1);
     outline: none;
   }
 

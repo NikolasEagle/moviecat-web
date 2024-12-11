@@ -29,7 +29,7 @@ form {
     font-size: 15px;
 
     &:focus {
-      box-shadow: 0 0 25px darkorchid;
+      box-shadow: 0 0 25px rgba(0, 217, 231, 1);
     }
 
     &::placeholder {
@@ -37,24 +37,25 @@ form {
     }
 
     &:hover {
-      box-shadow: 0 0 25px darkorchid;
+      box-shadow: 0 0 25px rgba(0, 217, 231, 1);
     }
   }
   a {
     display: block;
-    color: darkorchid;
+    color: rgba(0, 217, 231, 1);
     transition: 0.5s;
     &:hover {
       transform: scale(1.1);
-      text-shadow: 0 0 25px darkorchid;
+      text-shadow: 0 0 25px rgba(0, 217, 231, 1);
     }
   }
-  button {
+
+  .submit {
     cursor: pointer;
     border: none;
     border-radius: 10px;
     height: 50px;
-    background-color: darkorchid;
+    background-color: rgba(0, 217, 231, 1);
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -62,7 +63,7 @@ form {
 
     &:hover,
     &:focus {
-      box-shadow: 0 0 15px darkorchid;
+      box-shadow: 0 0 15px rgba(0, 217, 231, 1);
       transform: scale(1.05);
       outline: none;
     }

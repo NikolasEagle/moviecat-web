@@ -1,9 +1,9 @@
 @keyframes blur {
   from {
-    text-shadow: 0 0 15px darkorchid;
+    text-shadow: 0 0 15px rgba(0, 217, 231, 1);
   }
   to {
-    text-shadow: 0 0 25px darkorchid;
+    text-shadow: 0 0 25px rgba(0, 217, 231, 1);
   }
 }
 
@@ -21,7 +21,7 @@
   justify-content: center;
 
   h1 {
-    color: darkorchid;
+    color: rgba(0, 217, 231, 1);
 
     margin: 0;
 
