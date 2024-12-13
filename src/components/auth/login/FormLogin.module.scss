@@ -5,7 +5,11 @@
 
   flex-direction: column;
 
+  justify-content: center;
+
   gap: 15px;
+
+  padding: calc(50vh - 180px) 0 0 0;
 
   form {
     display: flex;

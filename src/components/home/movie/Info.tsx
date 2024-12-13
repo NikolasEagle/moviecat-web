@@ -13,7 +13,9 @@ const Info = () => {
     <div className={styles.movie_info}>
       <h2>
         {context.movieData.name_russian || context.movieData.name_original}
-        {context.movieData.year && ` (${context.movieData.year})`}
+        {context.movieData.year && context.movieData.year !== "0-0"
+          ? ` (${context.movieData.year})`
+          : null}
       </h2>
 
       {context.movieData.country_ru && (
@@ -22,35 +24,45 @@ const Info = () => {
         </p>
       )}
 
-      {context.movieData.persons.length && (
-        <>
+      <div>
+        {context.movieData.persons.filter(
+          (person) => person.profession.profession_id === "director"
+        ).length ? (
           <p>
             <strong>Режиссер</strong>:{" "}
             {context.movieData.persons
               .filter(
                 (person) => person.profession.profession_id === "director"
               )
-              .map((person) => person.name_russian)
+              .map((person) => person.name_russian || person.name_english)
               .join(", ")}
           </p>
+        ) : null}
+        {context.movieData.persons.filter(
+          (person) => person.profession.profession_id === "producer"
+        ).length ? (
           <p>
             <strong>Продюсер</strong>:{" "}
             {context.movieData.persons
               .filter(
                 (person) => person.profession.profession_id === "producer"
               )
-              .map((person) => person.name_russian)
+              .map((person) => person.name_russian || person.name_english)
               .join(", ")}
           </p>
+        ) : null}{" "}
+        {context.movieData.persons.filter(
+          (person) => person.profession.profession_id === "actor"
+        ).length ? (
           <p>
             <strong>Актеры</strong>:{" "}
             {context.movieData.persons
               .filter((person) => person.profession.profession_id === "actor")
-              .map((person) => person.name_russian)
+              .map((person) => person.name_russian || person.name_english)
               .join(", ")}
           </p>
-        </>
-      )}
+        ) : null}
+      </div>
 
       {context.movieData.budget && (
         <p>

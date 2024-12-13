@@ -15,14 +15,15 @@ const ShowMoreButton = ({ next_page }: Props) => {
 
   return (
     next_page && (
-      <button
-        onClick={() => {
-          context.showMore(next_page);
-        }}
-        className={styles.show_more}
-      >
-        Показать еще
-      </button>
+      <div className={styles.show_more}>
+        <button
+          onClick={() => {
+            context.showMore(next_page);
+          }}
+        >
+          Показать еще
+        </button>
+      </div>
     )
   );
 };

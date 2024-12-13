@@ -34,7 +34,9 @@ const MovieCard = ({ movie }: Props) => {
       onClick={() => context.navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
-        {movie.year && <div className={styles.year}>{movie.year}</div>}
+        {movie.year && movie.year !== "0-0" ? (
+          <div className={styles.year}>{movie.year}</div>
+        ) : null}
         {(movie.rating_kp || movie.rating_imdb) && (
           <div className={styles.rating}>
             {movie.rating_kp || movie.rating_imdb}

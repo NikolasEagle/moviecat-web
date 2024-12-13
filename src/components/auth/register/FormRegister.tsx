@@ -10,7 +10,7 @@ const FormRegister = () => {
   const context = useContext(RegisterContext) as contextType;
 
   return (
-    <>
+    <div className={styles.form_register}>
       <h2>Запрос на регистрацию</h2>
       <form
         onSubmit={(event: React.ChangeEvent<HTMLFormElement>) =>
@@ -47,7 +47,7 @@ const FormRegister = () => {
           Отправить запрос
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

@@ -12,7 +12,6 @@ const AccountButton = () => {
   const [popup, setPopup] = useState<boolean>(false);
 
   function showHidePopup(event) {
-    context.checkAuth();
     if (event.target.id === "shadow") {
       setPopup(false);
     } else {

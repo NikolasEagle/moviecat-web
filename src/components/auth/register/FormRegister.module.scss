@@ -1,75 +1,96 @@
-form {
+.form_register {
   display: flex;
 
   flex-direction: column;
 
+  align-items: center;
+
+  justify-content: center;
+
   width: 100%;
 
-  gap: 15px;
+  padding: calc(50vh - 180px) 0 0 0;
 
-  input {
-    height: 50px;
+  form {
+    display: flex;
 
-    padding: 0 20px 0 20px;
+    flex-direction: column;
 
-    box-sizing: border-box;
+    align-items: center;
 
-    outline: none;
+    justify-content: center;
 
-    background: none;
+    width: 100%;
 
-    border-radius: 10px;
+    gap: 15px;
 
-    border: 2px solid #555;
+    input {
+      height: 50px;
 
-    color: white;
+      width: 100%;
 
-    transition: 0.5s;
+      padding: 0 20px 0 20px;
 
-    font-size: 15px;
+      box-sizing: border-box;
 
-    &:focus {
-      box-shadow: 0 0 25px rgba(0, 217, 231, 1);
-    }
-
-    &::placeholder {
-      font-size: 15px;
-    }
-
-    &:hover {
-      box-shadow: 0 0 25px rgba(0, 217, 231, 1);
-    }
-  }
-  a {
-    display: block;
-    color: rgba(0, 217, 231, 1);
-    transition: 0.5s;
-    &:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 25px rgba(0, 217, 231, 1);
-    }
-  }
-
-  .submit {
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    height: 50px;
-    background-color: rgba(0, 217, 231, 1);
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: 0.5s;
-
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 15px rgba(0, 217, 231, 1);
-      transform: scale(1.05);
       outline: none;
+
+      background: none;
+
+      border-radius: 10px;
+
+      border: 2px solid #555;
+
+      color: white;
+
+      transition: 0.5s;
+
+      font-size: 15px;
+
+      &:focus {
+        box-shadow: 0 0 25px rgba(0, 217, 231, 1);
+      }
+
+      &::placeholder {
+        font-size: 15px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 25px rgba(0, 217, 231, 1);
+      }
     }
-  }
-  p {
-    text-align: center;
-    margin: 0;
+    a {
+      display: block;
+      color: rgba(0, 217, 231, 1);
+      transition: 0.5s;
+      &:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 25px rgba(0, 217, 231, 1);
+      }
+    }
+
+    .submit {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      height: 50px;
+      width: 100%;
+      background-color: rgba(0, 217, 231, 1);
+      background-size: 40%;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: 0.5s;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 15px rgba(0, 217, 231, 1);
+        transform: scale(1.05);
+        outline: none;
+      }
+    }
+    p {
+      text-align: center;
+      margin: 0;
+    }
   }
 }

@@ -56,7 +56,7 @@
     border: none;
     border-radius: 10px;
     height: 50px;
-    background-color: darkorchid;
+    background-color: rgba(0, 217, 231, 1);
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -64,7 +64,7 @@
 
     &:hover,
     &:focus {
-      box-shadow: 0 0 15px darkorchid;
+      box-shadow: 0 0 15px rgba(0, 217, 231, 1);
       transform: scale(1.05);
       outline: none;
     }

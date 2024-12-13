@@ -13,6 +13,7 @@ export type contextType = {
             profession_id: string;
           };
           name_russian: string;
+          name_english: string;
         }[]
       | [];
     genres: { name_ru: string }[] | [];

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import styles from "./Register.module.scss";
 
@@ -15,6 +15,10 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
 
+  useEffect(() => {
+    context.checkAuth();
+  }, []);
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
@@ -26,7 +30,7 @@ const Register = () => {
   const [content, setContent] = useState<React.JSX.Element>(<FormRegister />);
 
   async function sendReq(event: React.ChangeEvent<HTMLFormElement>) {
-    setContent(<Download />);
+    setContent(<Download height={"calc(50vh + 50px)"} />);
 
     event.preventDefault();
 
