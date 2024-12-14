@@ -8,7 +8,9 @@ const Home = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />}></Route>
+      <Route path="/user" element={<Main />}></Route>
       <Route path="/search/:query" element={<Main />}></Route>
+      <Route path="/search/:query/user" element={<Main />}></Route>
       <Route path="/movies/:movie_id" element={<Movie />}></Route>
       <Route path="/login" element={<Navigate to={"/"} />}></Route>
     </Routes>

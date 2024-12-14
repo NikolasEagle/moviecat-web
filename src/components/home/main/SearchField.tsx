@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import styles from "./SearchField.module.scss";
 
@@ -13,21 +13,20 @@ const SearchField = () => {
 
   return (
     <input
+      id="search"
       placeholder="Поиск..."
+      tabIndex={0}
       className={styles.search}
       value={context.searchValue}
       onChange={(event) => context.setSearchValue(event.target.value)}
       onKeyDown={(event) => {
         if (event.key === "Enter") {
           if (context.searchValue) {
-            navigate(`/search/${context.searchValue}`, {
-              replace: false,
-            });
+            navigate(`/search/${context.searchValue}`);
           } else {
-            navigate(`/`, { replace: false });
+            navigate(`/`);
           }
           context.setSearchValue("");
-          window.location.reload();
         }
       }}
     />

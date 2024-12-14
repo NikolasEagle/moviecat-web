@@ -11,7 +11,7 @@ import ScrollUpButton from "../components/home/main/ScrollUpButton.tsx";
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
@@ -25,19 +25,20 @@ const Main = () => {
 
   let [movieCards, setMovieCards] = useState<React.JSX.Element[]>([]);
 
-  let [result, setResult] = useState<string | undefined>(undefined);
-
-  const navigate = useNavigate();
+  let [result, setResult] = useState<string | null>(null);
 
   useEffect(() => {
+    generatePage(1);
     context.checkAuth();
-  }, []);
+  }, [query]);
 
   async function generatePage(page_id: number) {
-    setMovieCards([
-      ...movieCards.slice(0, -1),
-      <Download height={!movieCards.length ? "calc(50vh + 50px)" : "20px"} />,
-    ]);
+    if (page_id === 1) {
+      setResult(null);
+      setMovieCards([<Download height={"calc(100vh - 250px)"} />]);
+    } else {
+      setMovieCards([...movieCards.slice(0, -1), <Download height={"20px"} />]);
+    }
 
     let url: string;
 
@@ -68,30 +69,56 @@ const Main = () => {
         next_page_url: string | null;
       } = await response.json();
 
-      setMovieCards([
-        ...movieCards.slice(0, -1),
-        ...body.data.map(
-          (movie: {
-            id: number;
+      if (page_id === 1) {
+        setMovieCards([
+          ...body.data.map(
+            (movie: {
+              id: number;
 
-            year: string | null;
+              year: string | null;
 
-            rating_kp: string | null;
+              rating_kp: string | null;
 
-            rating_imdb: string | null;
+              rating_imdb: string | null;
 
-            small_poster: string | null;
+              small_poster: string | null;
 
-            big_poster: string | null;
+              big_poster: string | null;
 
-            name_original: string | null;
+              name_original: string | null;
 
-            name_russian: string | null;
-          }) => <MovieCard movie={movie} />
-        ),
-        <ShowMoreButton next_page={body.next_page_url} />,
-      ]);
-      setResult(query);
+              name_russian: string | null;
+            }) => <MovieCard movie={movie} />
+          ),
+          <ShowMoreButton next_page={body.next_page_url} />,
+        ]);
+      } else {
+        setMovieCards([
+          ...movieCards.slice(0, -1),
+          ...body.data.map(
+            (movie: {
+              id: number;
+
+              year: string | null;
+
+              rating_kp: string | null;
+
+              rating_imdb: string | null;
+
+              small_poster: string | null;
+
+              big_poster: string | null;
+
+              name_original: string | null;
+
+              name_russian: string | null;
+            }) => <MovieCard movie={movie} />
+          ),
+          <ShowMoreButton next_page={body.next_page_url} />,
+        ]);
+      }
+
+      setResult(query === undefined ? null : query);
     } catch (error) {
       setMovieCards([<Error message={"Ошибка подключения к серверу API"} />]);
     }
@@ -113,7 +140,6 @@ const Main = () => {
       <MovieContext.Provider
         value={{
           query,
-          navigate,
           generatePage,
           showMore,
           searchValue,
