@@ -9,8 +9,7 @@ import RegisterContext from "../contexts/RegisterContext.tsx";
 
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
-
-import { useNavigate } from "react-router-dom";
+import Success from "../components/additional/Success.tsx";
 
 const Register = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
@@ -18,8 +17,6 @@ const Register = () => {
   useEffect(() => {
     context.checkAuth();
   }, []);
-
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
 
@@ -30,7 +27,7 @@ const Register = () => {
   const [content, setContent] = useState<React.JSX.Element>(<FormRegister />);
 
   async function sendReq(event: React.ChangeEvent<HTMLFormElement>) {
-    setContent(<Download height={"calc(50vh + 50px)"} />);
+    setContent(<Download height={"calc(100vh - 50px)"} />);
 
     event.preventDefault();
 
@@ -51,22 +48,11 @@ const Register = () => {
       if (response.status === 201) {
         let { name, surname, email } = await response.json();
 
-        setContent(
-          <>
-            <p>
-              {surname} {name} ваша заявка принята в работу.
-              <br />
-              После рассмотрения на почту {email} будет выслан пароль для входа.
-            </p>
-            <button onClick={() => navigate("/")}>
-              Вернуться на страницу входа
-            </button>
-          </>
-        );
+        setContent(<Success surname={surname} name={name} email={email} />);
       } else if (response.status === 409) {
         setContent(
           <>
-            <FormRegister />,
+            <FormRegister />
             <Error message={"Пользователь с таким email уже существует"} />
           </>
         );
@@ -81,7 +67,7 @@ const Register = () => {
     } catch (error) {
       setContent(
         <>
-          <FormRegister />,
+          <FormRegister />
           <Error message={"Ошибка подключения к серверу"} />
         </>
       );

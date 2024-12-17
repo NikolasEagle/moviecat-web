@@ -35,7 +35,7 @@ const Main = () => {
   async function generatePage(page_id: number) {
     if (page_id === 1) {
       setResult(null);
-      setMovieCards([<Download height={"calc(100vh - 250px)"} />]);
+      setMovieCards([<Download height={"calc(100vh - 200px)"} />]);
     } else {
       setMovieCards([...movieCards.slice(0, -1), <Download height={"20px"} />]);
     }
@@ -43,9 +43,9 @@ const Main = () => {
     let url: string;
 
     if (query) {
-      url = `https://kinobd.xyz/api/films/search/title?q=${query}&page=${page_id}`;
+      url = `/api/movies/search/${query}/${page_id}`;
     } else {
-      url = `https://kinobd.xyz/api/films/top?page=${page_id}`;
+      url = `/api/movies/${page_id}`;
     }
 
     try {

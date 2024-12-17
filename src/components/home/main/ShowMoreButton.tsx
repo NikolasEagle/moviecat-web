@@ -11,8 +11,6 @@ type Props = {
 const ShowMoreButton = ({ next_page }: Props) => {
   const context = useContext(MainContext) as contextType;
 
-  console.log(next_page);
-
   return (
     next_page && (
       <div className={styles.show_more}>

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import styles from "./MovieCard.module.scss";
 
-import MainContext, { contextType } from "../../../contexts/MainContext.tsx";
+import { useNavigate } from "react-router";
 
 type Props = {
   movie: {
@@ -25,13 +25,13 @@ type Props = {
 };
 
 const MovieCard = ({ movie }: Props) => {
-  const context = useContext(MainContext) as contextType;
+  const navigate = useNavigate();
 
   return (
     <div
       tabIndex={0}
       className={styles.card}
-      onClick={() => context.navigate(`/movies/${movie.id}`)}
+      onClick={() => navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
         {movie.year && movie.year !== "0-0" ? (

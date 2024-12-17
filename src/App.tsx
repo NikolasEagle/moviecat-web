@@ -8,7 +8,7 @@ import AuthContext from "./contexts/AuthContext.tsx";
 import Download from "./components/additional/Download.tsx";
 
 const App = () => {
-  const [token, setToken] = useState<boolean | null>(true);
+  const [token, setToken] = useState<boolean | null>(null);
 
   const [name, setName] = useState<string>("Name");
 
@@ -46,7 +46,7 @@ const App = () => {
       <Router>
         {token === null ? (
           <Routes>
-            <Route element={<Download height={"calc(50vh + 50px)"} />}></Route>
+            <Route element={<Download height={"calc(100vh - 50px)"} />}></Route>
           </Routes>
         ) : token ? (
           <Home />

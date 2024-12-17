@@ -6,6 +6,8 @@ import RegisterContext, {
   contextType,
 } from "../../../contexts/RegisterContext.tsx";
 
+import { Link } from "react-router-dom";
+
 const FormRegister = () => {
   const context = useContext(RegisterContext) as contextType;
 
@@ -46,6 +48,7 @@ const FormRegister = () => {
         <button className={styles.submit} type="submit">
           Отправить запрос
         </button>
+        <Link to="/">Назад</Link>
       </form>
     </div>
   );

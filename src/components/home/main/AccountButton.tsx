@@ -1,23 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./AccountButton.module.scss";
 
-import AuthContext, {
-  contextTypeAuth,
-} from "../../../contexts/AuthContext.tsx";
+import { useLocation, useNavigate } from "react-router";
 
-import { useNavigate } from "react-router";
+import AccountPopup from "./AccountPopup.tsx";
+import PopupShadow from "../../additional/PopupShadow.tsx";
 
 const AccountButton = () => {
-  const context = useContext(AuthContext) as contextTypeAuth;
-
   const [popup, setPopup] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   useEffect(() => {
-    console.log(window.location.href.slice(-5, -1));
-    if (window.location.href.slice(-4) === "user") {
+    if (
+      /((^\/search\/[\wа-яёА-ЯЁ]+\/user$)|(^(?!\/search)\/user$))/g.test(
+        decodeURI(location.pathname)
+      )
+    ) {
       setPopup(true);
     } else {
       setPopup(false);
@@ -26,8 +28,8 @@ const AccountButton = () => {
 
   function showHidePopup(event) {
     if (
-      event.target.id === "shadow" ||
-      (popup && event.target.tagName === "BUTTON")
+      popup &&
+      (event.target.tagName === "BUTTON" || event.target.id === "shadow")
     ) {
       navigate(-1);
     } else {
@@ -47,39 +49,9 @@ const AccountButton = () => {
         }}
         className={styles.account_button}
       >
-        {popup && (
-          <>
-            <div className={styles.popup}>
-              <div className={styles.main}>
-                <div className={styles.avatar}></div>
-                <p>
-                  {context.name} {context.surName}
-                </p>
-              </div>
-              <div className={styles.bottom}>
-                <a
-                  tabIndex={0}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    context.logout();
-                  }}
-                >
-                  Выйти
-                </a>
-              </div>
-            </div>
-          </>
-        )}
+        <AccountPopup popup={popup} />
       </button>
-      {popup && (
-        <div
-          id="shadow"
-          onClick={(event) => {
-            showHidePopup(event);
-          }}
-          className={styles.shadow}
-        ></div>
-      )}
+      <PopupShadow popup={popup} showHidePopup={showHidePopup} />
     </>
   );
 };
