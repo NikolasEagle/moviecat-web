@@ -9,7 +9,6 @@ import LoginContext from "../contexts/LoginContext.tsx";
 
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
@@ -25,7 +24,7 @@ const Login = () => {
   const [content, setContent] = useState<React.JSX.Element>(<FormLogin />);
 
   async function sendReq(event: React.ChangeEvent<HTMLFormElement>) {
-    setContent(<Download height={"calc(50vh + 50px)"} />);
+    setContent(<Download height={"calc(100vh - 50px)"} />);
 
     event.preventDefault();
 

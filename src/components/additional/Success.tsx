@@ -9,7 +9,7 @@ const Success = ({ surname, name, email }) => {
     <div className={styles.success}>
       <p>
         <b>
-          {surname} {name}
+          {name} {surname}
         </b>
       </p>
       <div>

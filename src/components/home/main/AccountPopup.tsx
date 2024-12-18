@@ -5,13 +5,21 @@ import styles from "./AccountPopup.module.scss";
 import AuthContext, {
   contextTypeAuth,
 } from "../../../contexts/AuthContext.tsx";
+import { useNavigate } from "react-router";
 
 const AccountPopup = ({ popup }) => {
   const context = useContext(AuthContext) as contextTypeAuth;
 
+  const navigate = useNavigate();
+
   return (
     popup && (
-      <div className={styles.popup}>
+      <div
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+        className={styles.popup}
+      >
         <div className={styles.main}>
           <div className={styles.avatar}></div>
           <p>
@@ -24,6 +32,7 @@ const AccountPopup = ({ popup }) => {
             onClick={(event) => {
               event.preventDefault();
               context.logout();
+              navigate("/login");
             }}
           >
             Выйти

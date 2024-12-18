@@ -47,7 +47,7 @@ const Movie = () => {
   );
 
   async function generatePage() {
-    let url = `https://kinobd.xyz/api/films/${movie_id}`;
+    let url = `/api/movie/${movie_id}`;
 
     try {
       let response: Response = await fetch(url);
