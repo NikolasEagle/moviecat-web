@@ -1,15 +1,18 @@
 .top_panel {
-  display: flex;
-
-  flex-direction: row;
-
-  justify-content: space-evenly;
-
-  flex-wrap: wrap;
-
-  gap: 20px;
-
   width: 100%;
+  .info {
+    display: flex;
 
-  padding: 20px 0 0;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+
+    gap: 20px;
+
+    width: 100%;
+
+    padding: 0 0 0;
+  }
 }

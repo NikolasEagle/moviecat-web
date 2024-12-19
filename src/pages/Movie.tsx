@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 
 import Error from "../components/additional/Error.tsx";
 import Download from "../components/additional/Download.tsx";
+import BackButton from "../components/home/movie/BackButton.tsx";
 
 const Movie = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
@@ -58,6 +59,7 @@ const Movie = () => {
 
       setMovieContent(
         <div className={styles.movie}>
+          <BackButton />
           <TopPanel />
           <Description />
           <Player />

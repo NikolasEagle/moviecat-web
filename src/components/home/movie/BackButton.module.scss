@@ -1,0 +1,63 @@
+.back_button {
+  display: flex;
+
+  z-index: 489;
+
+  justify-content: flex-start;
+
+  align-items: center;
+
+  width: 100%;
+
+  position: sticky;
+
+  top: 0;
+
+  background: #111;
+
+  gap: 20px;
+
+  justify-content: first baseline;
+
+  padding: 20px 0 20px;
+
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+
+    background-image: url(back.svg);
+    background-color: rgba(0, 217, 231, 1);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.5s;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 15px rgba(0, 217, 231, 1);
+      transform: scale(1.05);
+      outline: none;
+    }
+  }
+  @media (max-width: 575px) {
+    justify-content: center;
+  }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 992px) and (max-width: 1999px) {
+    justify-content: flex-start;
+  }
+  @media (min-width: 2000px) {
+    justify-content: flex-start;
+  }
+}
