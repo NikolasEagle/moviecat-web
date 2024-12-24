@@ -1,6 +1,6 @@
 {
   "name": "moviecat_web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ghostery/adblocker-webextension": "^2.3.0",
