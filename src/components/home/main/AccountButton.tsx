@@ -51,6 +51,7 @@ const AccountButton = () => {
   return (
     <>
       <button
+        tabIndex={1}
         id="account_button"
         onClick={(event) => {
           showHidePopup(event);

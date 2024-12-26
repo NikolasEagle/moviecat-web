@@ -21,7 +21,8 @@ const SearchField = () => {
     <input
       id="search"
       placeholder="Поиск..."
-      tabIndex={0}
+      autoFocus
+      tabIndex={1}
       className={styles.search}
       value={context.searchValue}
       onChange={(event) => context.setSearchValue(event.target.value)}

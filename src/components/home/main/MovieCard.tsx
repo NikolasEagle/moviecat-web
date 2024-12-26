@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styles from "./MovieCard.module.scss";
 
 import { useNavigate } from "react-router";
+
+import DeviceContext, {
+  contextDevice,
+} from "../../../contexts/DeviceContext.tsx";
 
 type Props = {
   movie: {
@@ -27,10 +31,16 @@ type Props = {
 const MovieCard = ({ movie }: Props) => {
   const navigate = useNavigate();
 
+  const contextDevice = useContext(DeviceContext) as contextDevice;
+
   return (
     <div
-      tabIndex={0}
-      className={styles.card}
+      tabIndex={2}
+      className={
+        !contextDevice
+          ? styles.card
+          : [styles["card"], styles["card_tv"]].join(" ")
+      }
       onClick={() => navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>

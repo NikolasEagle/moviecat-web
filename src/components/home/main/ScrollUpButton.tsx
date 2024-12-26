@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import styles from "./ScrollUpButton.module.scss";
 
+import DeviceContext, {
+  contextDevice,
+} from "../../../contexts/DeviceContext.tsx";
+
 const ScrollUpButton = () => {
   let [hidden, setHidden] = useState<boolean>(true);
+
+  const contextDevice = useContext(DeviceContext) as contextDevice;
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -23,11 +29,14 @@ const ScrollUpButton = () => {
   }
 
   return (
-    <button
-      hidden={hidden}
-      onClick={scrollUp}
-      className={styles.scrollup_button}
-    ></button>
+    !contextDevice.tv && (
+      <button
+        hidden={hidden}
+        tabIndex={-1}
+        onClick={scrollUp}
+        className={styles.scrollup_button}
+      ></button>
+    )
   );
 };
 

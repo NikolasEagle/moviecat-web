@@ -9,6 +9,7 @@ import ShowMoreButton from "../components/home/main/ShowMoreButton.tsx";
 import ScrollUpButton from "../components/home/main/ScrollUpButton.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
+import DeviceContext, { contextDevice } from "../contexts/DeviceContext.tsx";
 import MovieContext from "../contexts/MainContext.tsx";
 
 import { useParams } from "react-router-dom";
@@ -16,8 +17,12 @@ import { useParams } from "react-router-dom";
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
 
+import { nanoid } from "nanoid";
+
 const Main = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
+
+  const contextDevice = useContext(DeviceContext) as contextDevice;
 
   let { query } = useParams();
 
@@ -37,7 +42,10 @@ const Main = () => {
       setResult(null);
       setMovieCards([<Download height={"calc(100vh - 200px)"} />]);
     } else {
-      setMovieCards([...movieCards.slice(0, -1), <Download height={"20px"} />]);
+      setMovieCards([
+        ...movieCards.slice(0, -1),
+        <Download height={!contextDevice.tv ? "20px" : "164px"} />,
+      ]);
     }
 
     let url: string;
@@ -88,7 +96,7 @@ const Main = () => {
               name_original: string | null;
 
               name_russian: string | null;
-            }) => <MovieCard movie={movie} />
+            }) => <MovieCard key={nanoid()} movie={movie} />
           ),
           <ShowMoreButton next_page={body.next_page_url} />,
         ]);
@@ -112,7 +120,7 @@ const Main = () => {
               name_original: string | null;
 
               name_russian: string | null;
-            }) => <MovieCard movie={movie} />
+            }) => <MovieCard key={nanoid()} movie={movie} />
           ),
           <ShowMoreButton next_page={body.next_page_url} />,
         ]);

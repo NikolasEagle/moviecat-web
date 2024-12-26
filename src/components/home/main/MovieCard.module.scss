@@ -5,6 +5,8 @@
 
   width: calc((880px - 60px) / 5);
 
+  min-width: calc((880px - 60px) / 5);
+
   cursor: pointer;
 
   transition: 0.5s;
@@ -17,13 +19,11 @@
 
   color: white;
 
-  z-index: 3;
-
   &:hover,
   &:focus {
     box-shadow: 0 0 15px rgba(0, 217, 231, 1);
-    transform: scale(1.05);
     outline: none;
+    transform: scale(1.01);
   }
 
   .top_panel {
@@ -99,6 +99,15 @@
     transform: scale(1);
   }
   @media screen and (min-width: 2000px) {
+    transform: scale(1);
+  }
+}
+
+.card_tv {
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 15px rgba(0, 217, 231, 1);
+    outline: none;
     transform: scale(1);
   }
 }

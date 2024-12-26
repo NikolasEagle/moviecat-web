@@ -18,6 +18,7 @@ const SearchButton = () => {
 
   return (
     <button
+      tabIndex={1}
       className={styles.search_button}
       onClick={() => {
         contextAuth.checkAuth();
