@@ -4,10 +4,16 @@ import styles from "./Info.module.scss";
 
 import Rating from "./Rating.tsx";
 
+import DeviceContext, {
+  contextDevice,
+} from "../../../contexts/DeviceContext.tsx";
 import MovieContext, { contextType } from "../../../contexts/MovieContext.tsx";
+import WatchTVButton from "./WatchTVButton.tsx";
 
 const Info = () => {
   const context = useContext(MovieContext) as contextType;
+
+  const contextDevice = useContext(DeviceContext) as contextDevice;
 
   return (
     <div className={styles.movie_info}>
@@ -78,6 +84,7 @@ const Info = () => {
       )}
 
       <Rating />
+      {contextDevice.tv && <WatchTVButton />}
     </div>
   );
 };

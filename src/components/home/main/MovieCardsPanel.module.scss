@@ -7,15 +7,21 @@
 
   justify-content: center;
 
+  align-items: center;
+
   gap: 15px;
 
   width: 100%;
 }
 
 .panel_tv {
-  height: calc(100vh - 80px);
   flex-wrap: nowrap;
   overflow-x: hidden;
+
+  box-sizing: border-box;
   justify-content: flex-start;
   padding: 10px 10px 15px;
+  height: calc(100vh - (50px + 20px + 15px + 10px + 15px));
+  scroll-snap-type: x mandatory;
+  scroll-padding: 50%;
 }

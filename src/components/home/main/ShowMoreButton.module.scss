@@ -43,8 +43,11 @@
 }
 
 .show_more_tv {
-  height: 220px;
+  height: calc(220px * 1.5);
+  min-width: calc(164px * 1.5);
   button {
-    height: 220px;
+    height: calc(220px * 1.5);
+    width: 100%;
+    font-size: calc(15px * 1.5);
   }
 }

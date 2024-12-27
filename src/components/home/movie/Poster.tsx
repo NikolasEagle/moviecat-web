@@ -8,7 +8,7 @@ const Poster = () => {
   const context = useContext(MovieContext) as contextType;
 
   return (
-    <div className={styles.poster}>
+    <div id="poster" className={styles.poster}>
       <img
         src={
           context.movieData.big_poster ||

@@ -2,9 +2,21 @@
   width: 270px;
   height: auto;
 
+  transition: 0.5s;
+
+  border-radius: 20px;
+
+  box-sizing: border-box;
+
+  &:focus {
+    box-shadow: 0 0 15px rgba(0, 217, 231, 1);
+    outline: none;
+    transform: scale(1.05);
+  }
+
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 20px;
   }
 }

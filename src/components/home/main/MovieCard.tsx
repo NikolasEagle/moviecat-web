@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import styles from "./MovieCard.module.scss";
 
@@ -9,6 +9,7 @@ import DeviceContext, {
 } from "../../../contexts/DeviceContext.tsx";
 
 type Props = {
+  index: number;
   movie: {
     id: number;
 
@@ -28,16 +29,25 @@ type Props = {
   };
 };
 
-const MovieCard = ({ movie }: Props) => {
+const MovieCard = ({ index, movie }: Props) => {
   const navigate = useNavigate();
+
+  const movieCardRef = useRef<any>(null);
 
   const contextDevice = useContext(DeviceContext) as contextDevice;
 
+  useEffect(() => {
+    if (index === 0) {
+      movieCardRef.current.focus();
+    }
+  }, []);
+
   return (
     <div
+      ref={movieCardRef}
       tabIndex={2}
       className={
-        !contextDevice
+        !contextDevice.tv
           ? styles.card
           : [styles["card"], styles["card_tv"]].join(" ")
       }
@@ -45,10 +55,24 @@ const MovieCard = ({ movie }: Props) => {
     >
       <div className={styles.top_panel}>
         {movie.year && movie.year !== "0-0" ? (
-          <div className={styles.year}>{movie.year}</div>
+          <div
+            className={
+              !contextDevice.tv
+                ? styles.year
+                : [styles["year"], styles["year_tv"]].join(" ")
+            }
+          >
+            {movie.year}
+          </div>
         ) : null}
         {(movie.rating_kp || movie.rating_imdb) && (
-          <div className={styles.rating}>
+          <div
+            className={
+              !contextDevice.tv
+                ? styles.rating
+                : [styles["rating"], styles["rating_tv"]].join(" ")
+            }
+          >
             {movie.rating_kp || movie.rating_imdb}
           </div>
         )}
@@ -58,7 +82,13 @@ const MovieCard = ({ movie }: Props) => {
 
       <div className={styles.gradient}></div>
 
-      <div className={styles.name}>
+      <div
+        className={
+          !contextDevice.tv
+            ? styles.name
+            : [styles["name"], styles["name_tv"]].join(" ")
+        }
+      >
         {movie.name_russian || movie.name_original}
       </div>
     </div>

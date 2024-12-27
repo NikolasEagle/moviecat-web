@@ -7,6 +7,7 @@ import Description from "../components/home/movie/Description.tsx";
 import Player from "../components/home/movie/Player.tsx";
 
 import AuthContext, { contextTypeAuth } from "../contexts/AuthContext.tsx";
+import DeviceContext, { contextDevice } from "../contexts/DeviceContext.tsx";
 import MovieContext, { contextType } from "../contexts/MovieContext.tsx";
 
 import { useParams } from "react-router-dom";
@@ -17,6 +18,8 @@ import BackButton from "../components/home/movie/BackButton.tsx";
 
 const Movie = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
+
+  const contextDevice = useContext(DeviceContext) as contextDevice;
 
   useEffect(() => {
     context.checkAuth();
@@ -59,7 +62,7 @@ const Movie = () => {
 
       setMovieContent(
         <div className={styles.movie}>
-          <BackButton />
+          {!contextDevice.tv && <BackButton />}
           <TopPanel />
           <Description />
           <Player />

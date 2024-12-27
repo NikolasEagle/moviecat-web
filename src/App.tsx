@@ -42,7 +42,7 @@ const App = () => {
 
   useEffect(() => {
     checkAuth();
-    setTv(isSmartTV);
+    setTv(true);
   }, []);
 
   return (

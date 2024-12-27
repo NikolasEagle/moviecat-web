@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styles from "./TopPanel.module.scss";
 
-import BackButton from "./BackButton.tsx";
 import Poster from "./Poster.tsx";
 import Info from "./Info.tsx";
 
-const TopPanel = () => (
-  <div className={styles.top_panel}>
-    <div className={styles.info}>
-      <Poster />
-      <Info />
+import DeviceContext, {
+  contextDevice,
+} from "../../../contexts/DeviceContext.tsx";
+
+const TopPanel = () => {
+  const contextDevice = useContext(DeviceContext) as contextDevice;
+  return (
+    <div className={styles.top_panel}>
+      <div
+        className={
+          !contextDevice.tv
+            ? styles.info
+            : [styles["info"], styles["info_tv"]].join(" ")
+        }
+      >
+        <Poster />
+        <Info />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default TopPanel;

@@ -63,8 +63,12 @@
       color: red;
       cursor: pointer;
 
-      &:hover {
+      transition: 0.5s;
+
+      &:hover,
+      &:focus {
         text-shadow: 0 0 15px red;
+        outline: none;
       }
     }
   }

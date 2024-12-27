@@ -1,4 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+
+import DeviceContext, {
+  contextDevice,
+} from "../../../contexts/DeviceContext.tsx";
 
 import MovieContext, { contextType } from "../../../contexts/MovieContext.tsx";
 
@@ -7,19 +11,11 @@ import KinoboxPlayer from "./KinoboxPlayer.tsx";
 const Player = () => {
   const context = useContext(MovieContext) as contextType;
 
-  async function getPlayer() {
-    const interval = setInterval(() => {
-      if (document.querySelector(".kinobox_iframe")) {
-        const iframe = document.querySelector(".kinobox_iframe");
+  const contextDevice = useContext(DeviceContext) as contextDevice;
 
-        clearInterval(interval);
-      }
-    }, 3000);
-  }
-
-  useEffect(() => {}, []);
-
-  return <KinoboxPlayer kpId={context.movieData.kinopoisk_id} />;
+  return !contextDevice.tv ? (
+    <KinoboxPlayer kpId={context.movieData.kinopoisk_id} />
+  ) : null;
 };
 
 export default Player;

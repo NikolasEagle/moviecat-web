@@ -44,7 +44,9 @@ const Main = () => {
     } else {
       setMovieCards([
         ...movieCards.slice(0, -1),
-        <Download height={!contextDevice.tv ? "20px" : "164px"} />,
+        <Download
+          height={!contextDevice.tv ? "20px" : `${(220 - 30) * 1.5}px`}
+        />,
       ]);
     }
 
@@ -80,23 +82,26 @@ const Main = () => {
       if (page_id === 1) {
         setMovieCards([
           ...body.data.map(
-            (movie: {
-              id: number;
+            (
+              movie: {
+                id: number;
 
-              year: string | null;
+                year: string | null;
 
-              rating_kp: string | null;
+                rating_kp: string | null;
 
-              rating_imdb: string | null;
+                rating_imdb: string | null;
 
-              small_poster: string | null;
+                small_poster: string | null;
 
-              big_poster: string | null;
+                big_poster: string | null;
 
-              name_original: string | null;
+                name_original: string | null;
 
-              name_russian: string | null;
-            }) => <MovieCard key={nanoid()} movie={movie} />
+                name_russian: string | null;
+              },
+              index: number
+            ) => <MovieCard index={index} movie={movie} />
           ),
           <ShowMoreButton next_page={body.next_page_url} />,
         ]);
@@ -104,23 +109,26 @@ const Main = () => {
         setMovieCards([
           ...movieCards.slice(0, -1),
           ...body.data.map(
-            (movie: {
-              id: number;
+            (
+              movie: {
+                id: number;
 
-              year: string | null;
+                year: string | null;
 
-              rating_kp: string | null;
+                rating_kp: string | null;
 
-              rating_imdb: string | null;
+                rating_imdb: string | null;
 
-              small_poster: string | null;
+                small_poster: string | null;
 
-              big_poster: string | null;
+                big_poster: string | null;
 
-              name_original: string | null;
+                name_original: string | null;
 
-              name_russian: string | null;
-            }) => <MovieCard key={nanoid()} movie={movie} />
+                name_russian: string | null;
+              },
+              index: number
+            ) => <MovieCard index={index} key={nanoid()} movie={movie} />
           ),
           <ShowMoreButton next_page={body.next_page_url} />,
         ]);
