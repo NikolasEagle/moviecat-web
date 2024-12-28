@@ -74,7 +74,7 @@ const Movie = () => {
   }
 
   return (
-    <MovieContext.Provider value={{ movieData }}>
+    <MovieContext.Provider value={{ movieData, movie_id }}>
       {movieContent}
     </MovieContext.Provider>
   );

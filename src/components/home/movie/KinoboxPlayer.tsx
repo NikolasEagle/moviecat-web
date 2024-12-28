@@ -20,7 +20,7 @@ function KinoboxPlayer({ kpId }: Props) {
         (window as any).kbox(containerRef.current, {
           search: { kinopoisk: kpId },
           players: {
-            collaps: {
+            alloha: {
               enable: true,
             },
           },
@@ -38,7 +38,14 @@ function KinoboxPlayer({ kpId }: Props) {
     };
   }, [kpId]);
 
-  return <div ref={containerRef} className={styles.kinobox_player}></div>;
+  return (
+    <div
+      autoFocus
+      tabIndex={0}
+      ref={containerRef}
+      className={styles.kinobox_player}
+    ></div>
+  );
 }
 
 export default KinoboxPlayer;

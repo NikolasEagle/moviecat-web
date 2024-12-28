@@ -1,6 +1,7 @@
 import React from "react";
 
 export type contextType = {
+  movie_id: string | undefined;
   movieData: {
     name_russian: string | null;
     name_original: string | null;

@@ -22,6 +22,7 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.27.0",
     "react-scripts": "^5.0.1",
+    "react-tv-player": "^1.1.7",
     "sass": "^1.82.0",
     "typescript": "^5.7.2",
     "web-vitals": "^2.1.4"
