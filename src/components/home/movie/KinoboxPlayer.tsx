@@ -9,18 +9,6 @@ interface Props {
 function KinoboxPlayer({ kpId }: Props) {
   const containerRef = useRef(null);
 
-  const elementReady = (selector) =>
-    new Promise((resolve) => {
-      const observer = new MutationObserver((mutations, obs) => {
-        if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector)); // Промис выполнен, элемент найден
-          obs.disconnect();
-        }
-      });
-
-      observer.observe(document.body, { childList: true, subtree: true });
-    });
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://kinobox.tv/kinobox.min.js";
@@ -42,10 +30,6 @@ function KinoboxPlayer({ kpId }: Props) {
         });
       }
     };
-
-    (async () => {
-      const iframe = await elementReady(".kinobox_iframe");
-    })();
 
     return () => {
       try {
