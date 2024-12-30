@@ -8,14 +8,17 @@ import AccountButton from "./AccountButton.tsx";
 import ResultsInfo from "./ResultsInfo.tsx";
 
 const TopPanel = () => (
-  <div className={styles.top_panel}>
-    <Header size={"small"} />
-    <SearchPanel />
-    <div className={styles.buttons_panel}>
-      <AccountButton />
+  <>
+    <div className={styles.top_panel_field}></div>
+    <div className={styles.top_panel}>
+      <Header size={"small"} />
+      <SearchPanel />
+      <div className={styles.buttons_panel}>
+        <AccountButton />
+      </div>
+      <ResultsInfo />
     </div>
-    <ResultsInfo />
-  </div>
+  </>
 );
 
 export default TopPanel;

@@ -1,3 +1,9 @@
+#player {
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
 .kinobox_player {
   width: 100%;
 

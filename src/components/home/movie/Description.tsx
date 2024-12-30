@@ -15,7 +15,7 @@ const Description = () => {
 
   return (
     <p
-      tabIndex={0}
+      tabIndex={!contextDevice.tv ? -1 : 0}
       className={
         !contextDevice.tv
           ? styles.description

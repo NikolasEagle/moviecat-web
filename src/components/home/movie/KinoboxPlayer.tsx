@@ -9,6 +9,18 @@ interface Props {
 function KinoboxPlayer({ kpId }: Props) {
   const containerRef = useRef(null);
 
+  const elementReady = (selector) =>
+    new Promise((resolve) => {
+      const observer = new MutationObserver((mutations, obs) => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector)); // Промис выполнен, элемент найден
+          obs.disconnect();
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://kinobox.tv/kinobox.min.js";
@@ -20,7 +32,7 @@ function KinoboxPlayer({ kpId }: Props) {
         (window as any).kbox(containerRef.current, {
           search: { kinopoisk: kpId },
           players: {
-            alloha: {
+            collaps: {
               enable: true,
             },
           },
@@ -31,6 +43,10 @@ function KinoboxPlayer({ kpId }: Props) {
       }
     };
 
+    (async () => {
+      const iframe = await elementReady(".kinobox_iframe");
+    })();
+
     return () => {
       try {
         document.body.removeChild(script);
@@ -38,14 +54,7 @@ function KinoboxPlayer({ kpId }: Props) {
     };
   }, [kpId]);
 
-  return (
-    <div
-      autoFocus
-      tabIndex={0}
-      ref={containerRef}
-      className={styles.kinobox_player}
-    ></div>
-  );
+  return <div ref={containerRef} className={styles.kinobox_player}></div>;
 }
 
 export default KinoboxPlayer;
