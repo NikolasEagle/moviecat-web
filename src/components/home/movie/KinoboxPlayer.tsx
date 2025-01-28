@@ -38,7 +38,15 @@ function KinoboxPlayer({ kpId }: Props) {
     };
   }, [kpId]);
 
-  return <div ref={containerRef} className={styles.kinobox_player}></div>;
+  return (
+    <>
+      <div
+        id="kinobox_player"
+        ref={containerRef}
+        className={styles.kinobox_player}
+      ></div>
+    </>
+  );
 }
 
 export default KinoboxPlayer;

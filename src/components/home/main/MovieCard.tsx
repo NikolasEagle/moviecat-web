@@ -15,6 +15,10 @@ type Props = {
 
     year: string | null;
 
+    year_start: string | null;
+
+    year_end: string | null;
+
     rating_kp: string | null;
 
     rating_imdb: string | null;
@@ -26,6 +30,8 @@ type Props = {
     name_original: string | null;
 
     name_russian: string | null;
+
+    images: Array<{ src: string }>;
   };
 };
 
@@ -54,7 +60,7 @@ const MovieCard = ({ index, movie }: Props) => {
       onClick={() => navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
-        {movie.year && movie.year !== "0-0" ? (
+        {
           <div
             className={
               !contextDevice.tv
@@ -62,9 +68,9 @@ const MovieCard = ({ index, movie }: Props) => {
                 : [styles["year"], styles["year_tv"]].join(" ")
             }
           >
-            {movie.year}
+            {movie.year ? movie.year : `${movie.year_start}-${movie.year_end}`}
           </div>
-        ) : null}
+        }
         {(movie.rating_kp || movie.rating_imdb) && (
           <div
             className={
@@ -78,7 +84,14 @@ const MovieCard = ({ index, movie }: Props) => {
         )}
       </div>
 
-      <img src={movie.small_poster || movie.big_poster || "/no_image.png"} />
+      <img
+        src={
+          movie.small_poster ||
+          movie.big_poster ||
+          (movie.images.length !== 0 && movie.images[0].src) ||
+          "/no_image.png"
+        }
+      />
 
       <div className={styles.gradient}></div>
 

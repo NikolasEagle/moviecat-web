@@ -66,17 +66,21 @@ const Main = () => {
           | {
               id: number;
               year: string | null;
+              year_start: string | null;
+              year_end: string | null;
               rating_kp: string | null;
               rating_imdb: string | null;
               small_poster: string | null;
               big_poster: string | null;
               name_original: string | null;
               name_russian: string | null;
+              images: Array<{ src: string }>;
             }[]
           | [];
-        current_page: number;
+        current_page: number | string;
         prev_page_url: string | null;
         next_page_url: string | null;
+        has_more: boolean;
       } = await response.json();
 
       if (page_id === 1) {
@@ -88,6 +92,9 @@ const Main = () => {
 
                 year: string | null;
 
+                year_start: string | null;
+                year_end: string | null;
+
                 rating_kp: string | null;
 
                 rating_imdb: string | null;
@@ -99,11 +106,16 @@ const Main = () => {
                 name_original: string | null;
 
                 name_russian: string | null;
+                images: Array<{ src: string }>;
               },
               index: number
             ) => <MovieCard index={index} movie={movie} />
           ),
-          <ShowMoreButton next_page={body.next_page_url} />,
+          <ShowMoreButton
+            current_page={body.current_page}
+            next_page={body.next_page_url}
+            has_more={body.has_more}
+          />,
         ]);
       } else {
         setMovieCards([
@@ -115,6 +127,9 @@ const Main = () => {
 
                 year: string | null;
 
+                year_start: string | null;
+                year_end: string | null;
+
                 rating_kp: string | null;
 
                 rating_imdb: string | null;
@@ -126,11 +141,16 @@ const Main = () => {
                 name_original: string | null;
 
                 name_russian: string | null;
+                images: Array<{ src: string }>;
               },
               index: number
             ) => <MovieCard index={index} key={nanoid()} movie={movie} />
           ),
-          <ShowMoreButton next_page={body.next_page_url} />,
+          <ShowMoreButton
+            current_page={body.current_page}
+            next_page={body.next_page_url}
+            has_more={body.has_more}
+          />,
         ]);
       }
 
@@ -140,11 +160,11 @@ const Main = () => {
     }
   }
 
-  function showMore(next_page: string) {
+  function showMore(next_page: string | null) {
     context.checkAuth();
 
     const params = new URLSearchParams(
-      next_page.slice(next_page.indexOf("?") + 1)
+      next_page?.slice(next_page?.indexOf("?") + 1)
     );
 
     const page_id = Number(params.get("page"));

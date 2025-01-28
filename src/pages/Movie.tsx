@@ -33,6 +33,8 @@ const Movie = () => {
     name_russian: null,
     name_original: null,
     year: null,
+    year_start: null,
+    year_end: null,
     country_ru: null,
     budget: null,
     persons: [],
@@ -44,6 +46,7 @@ const Movie = () => {
     age_restriction: null,
     rating_kp: null,
     rating_imdb: null,
+    images: [],
   });
 
   let [movieContent, setMovieContent] = useState<React.JSX.Element>(

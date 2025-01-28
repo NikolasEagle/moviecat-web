@@ -6,6 +6,8 @@ export type contextType = {
     name_russian: string | null;
     name_original: string | null;
     year: string | null;
+    year_start: string | null;
+    year_end: string | null;
     country_ru: string | null;
     budget: string | null;
     persons:
@@ -25,6 +27,7 @@ export type contextType = {
     age_restriction: string | null;
     rating_kp: number | null;
     rating_imdb: number | null;
+    images: Array<{ src: string }> | [];
   };
 };
 

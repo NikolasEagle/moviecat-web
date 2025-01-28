@@ -1,5 +1,11 @@
 .player_tv {
-  height: calc(100vh - 20px);
+  height: 100vh;
 
   width: 100vw;
+
+  margin-bottom: -20px;
+
+  iframe {
+    border-radius: 0;
+  }
 }
