@@ -19,6 +19,7 @@ const SearchField = () => {
 
   return (
     <input
+      autoComplete="off"
       id="search"
       placeholder="Поиск..."
       tabIndex={1}

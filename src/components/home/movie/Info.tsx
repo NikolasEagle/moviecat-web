@@ -18,11 +18,11 @@ const Info = () => {
   return (
     <div className={styles.movie_info}>
       <h2>
-        {context.movieData.name_russian || context.movieData.name_original} (
-        {context.movieData.year
-          ? context.movieData.year
-          : `${context.movieData.year_start}-${context.movieData.year_end}`}
-        )
+        {context.movieData.name_russian || context.movieData.name_original}
+        {context.movieData.year || context.movieData.year_start
+          ? context.movieData.year ||
+            `(${context.movieData.year_start}-${context.movieData.year_end})`
+          : null}
       </h2>
 
       {context.movieData.country_ru && (

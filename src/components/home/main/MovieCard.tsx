@@ -60,7 +60,7 @@ const MovieCard = ({ index, movie }: Props) => {
       onClick={() => navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
-        {
+        {(movie.year || movie.year_start) && (
           <div
             className={
               !contextDevice.tv
@@ -68,9 +68,11 @@ const MovieCard = ({ index, movie }: Props) => {
                 : [styles["year"], styles["year_tv"]].join(" ")
             }
           >
-            {movie.year ? movie.year : `${movie.year_start}-${movie.year_end}`}
+            {movie.year || movie.year_start
+              ? movie.year || `${movie.year_start}-${movie.year_end}`
+              : null}
           </div>
-        }
+        )}
         {(movie.rating_kp || movie.rating_imdb) && (
           <div
             className={
@@ -88,8 +90,9 @@ const MovieCard = ({ index, movie }: Props) => {
         src={
           movie.small_poster ||
           movie.big_poster ||
-          (movie.images.length !== 0 && movie.images[0].src) ||
-          "/no_image.png"
+          ("images" in movie && movie.images.length > 0
+            ? movie.images[0].src
+            : "/no_image.png")
         }
       />
 
