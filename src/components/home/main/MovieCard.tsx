@@ -13,25 +13,13 @@ type Props = {
   movie: {
     id: number;
 
-    year: string | null;
+    title: string | null;
 
-    year_start: string | null;
+    release_date: string | null;
 
-    year_end: string | null;
+    vote_average: number | null;
 
-    rating_kp: string | null;
-
-    rating_imdb: string | null;
-
-    small_poster: string | null;
-
-    big_poster: string | null;
-
-    name_original: string | null;
-
-    name_russian: string | null;
-
-    images: Array<{ src: string }>;
+    poster_path: string | null;
   };
 };
 
@@ -60,7 +48,7 @@ const MovieCard = ({ index, movie }: Props) => {
       onClick={() => navigate(`/movies/${movie.id}`)}
     >
       <div className={styles.top_panel}>
-        {(movie.year || movie.year_start) && (
+        {movie.release_date && (
           <div
             className={
               !contextDevice.tv
@@ -68,12 +56,10 @@ const MovieCard = ({ index, movie }: Props) => {
                 : [styles["year"], styles["year_tv"]].join(" ")
             }
           >
-            {movie.year || movie.year_start
-              ? movie.year || `${movie.year_start}-${movie.year_end}`
-              : null}
+            {movie.release_date.split("-")[0]}
           </div>
         )}
-        {(movie.rating_kp || movie.rating_imdb) && (
+        {movie.vote_average && (
           <div
             className={
               !contextDevice.tv
@@ -81,18 +67,14 @@ const MovieCard = ({ index, movie }: Props) => {
                 : [styles["rating"], styles["rating_tv"]].join(" ")
             }
           >
-            {movie.rating_kp || movie.rating_imdb}
+            {movie.vote_average.toFixed(1)}
           </div>
         )}
       </div>
 
       <img
         src={
-          movie.small_poster ||
-          movie.big_poster ||
-          ("images" in movie && movie.images.length > 0
-            ? movie.images[0].src
-            : "/no_image.png")
+          movie.poster_path ? `/images${movie.poster_path}` : "/no_image.png"
         }
       />
 
@@ -105,7 +87,7 @@ const MovieCard = ({ index, movie }: Props) => {
             : [styles["name"], styles["name_tv"]].join(" ")
         }
       >
-        {movie.name_russian || movie.name_original}
+        {movie.title}
       </div>
     </div>
   );

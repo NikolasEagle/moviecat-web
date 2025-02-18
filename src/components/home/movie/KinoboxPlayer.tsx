@@ -3,10 +3,10 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Player.module.scss";
 
 interface Props {
-  kpId: number | null;
+  tmdbId: number | null;
 }
 
-function KinoboxPlayer({ kpId }: Props) {
+function KinoboxPlayer({ tmdbId }: Props) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -18,9 +18,9 @@ function KinoboxPlayer({ kpId }: Props) {
     script.onload = () => {
       if (containerRef.current) {
         (window as any).kbox(containerRef.current, {
-          search: { kinopoisk: kpId },
+          search: { tmdb: tmdbId },
           players: {
-            collaps: {
+            alloha: {
               enable: true,
             },
           },
@@ -36,7 +36,7 @@ function KinoboxPlayer({ kpId }: Props) {
         document.body.removeChild(script);
       } catch (e) {}
     };
-  }, [kpId]);
+  }, [tmdbId]);
 
   return (
     <>

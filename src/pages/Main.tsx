@@ -17,7 +17,13 @@ import { useParams } from "react-router-dom";
 import Download from "../components/additional/Download.tsx";
 import Error from "../components/additional/Error.tsx";
 
-import { nanoid } from "nanoid";
+type Data = {
+  id: number;
+  title: string | null;
+  release_date: string | null;
+  vote_average: number | null;
+  poster_path: string | null;
+};
 
 const Main = () => {
   const context = useContext(AuthContext) as contextTypeAuth;
@@ -59,98 +65,28 @@ const Main = () => {
     }
 
     try {
-      let response: Response = await fetch(url);
+      let response = await fetch(url);
 
       let body: {
-        data:
-          | {
-              id: number;
-              year: string | null;
-              year_start: string | null;
-              year_end: string | null;
-              rating_kp: string | null;
-              rating_imdb: string | null;
-              small_poster: string | null;
-              big_poster: string | null;
-              name_original: string | null;
-              name_russian: string | null;
-              images: Array<{ src: string }>;
-            }[]
-          | [];
-        current_page: number | string;
-        prev_page_url: string | null;
-        next_page_url: string | null;
-        has_more: boolean;
+        results: Data[] | [];
+        page: number;
+        total_pages: number;
       } = await response.json();
 
       if (page_id === 1) {
         setMovieCards([
-          ...body.data.map(
-            (
-              movie: {
-                id: number;
-
-                year: string | null;
-
-                year_start: string | null;
-                year_end: string | null;
-
-                rating_kp: string | null;
-
-                rating_imdb: string | null;
-
-                small_poster: string | null;
-
-                big_poster: string | null;
-
-                name_original: string | null;
-
-                name_russian: string | null;
-                images: Array<{ src: string }>;
-              },
-              index: number
-            ) => <MovieCard index={index} movie={movie} />
-          ),
-          <ShowMoreButton
-            current_page={body.current_page}
-            next_page={body.next_page_url}
-            has_more={body.has_more}
-          />,
+          ...body.results.map((movie: Data, index: number) => (
+            <MovieCard index={index} movie={movie} />
+          )),
+          <ShowMoreButton page={body.page} total_pages={body.total_pages} />,
         ]);
       } else {
         setMovieCards([
           ...movieCards.slice(0, -1),
-          ...body.data.map(
-            (
-              movie: {
-                id: number;
-
-                year: string | null;
-
-                year_start: string | null;
-                year_end: string | null;
-
-                rating_kp: string | null;
-
-                rating_imdb: string | null;
-
-                small_poster: string | null;
-
-                big_poster: string | null;
-
-                name_original: string | null;
-
-                name_russian: string | null;
-                images: Array<{ src: string }>;
-              },
-              index: number
-            ) => <MovieCard index={index} key={nanoid()} movie={movie} />
-          ),
-          <ShowMoreButton
-            current_page={body.current_page}
-            next_page={body.next_page_url}
-            has_more={body.has_more}
-          />,
+          ...body.results.map((movie: Data, index: number) => (
+            <MovieCard index={index} movie={movie} />
+          )),
+          <ShowMoreButton page={body.page} total_pages={body.total_pages} />,
         ]);
       }
 
@@ -160,15 +96,8 @@ const Main = () => {
     }
   }
 
-  function showMore(next_page: string | null) {
+  function showMore(page_id: number) {
     context.checkAuth();
-
-    const params = new URLSearchParams(
-      next_page?.slice(next_page?.indexOf("?") + 1)
-    );
-
-    const page_id = Number(params.get("page"));
-
     generatePage(page_id);
   }
   return (

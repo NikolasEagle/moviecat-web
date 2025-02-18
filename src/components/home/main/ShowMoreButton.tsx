@@ -9,18 +9,17 @@ import DeviceContext, {
 } from "../../../contexts/DeviceContext.tsx";
 
 type Props = {
-  current_page: string | number;
-  next_page: string | null;
-  has_more: boolean;
+  page: number;
+  total_pages: number;
 };
 
-const ShowMoreButton = ({ current_page, next_page, has_more }: Props) => {
+const ShowMoreButton = ({ page, total_pages }: Props) => {
   const context = useContext(MainContext) as contextType;
 
   const contextDevice = useContext(DeviceContext) as contextDevice;
 
   return (
-    (next_page || has_more) && (
+    page !== total_pages && (
       <div
         className={
           !contextDevice.tv
@@ -31,15 +30,7 @@ const ShowMoreButton = ({ current_page, next_page, has_more }: Props) => {
         <button
           tabIndex={3}
           onClick={() => {
-            if (has_more) {
-              context.showMore(
-                `https://kinobd.xyz/api/films/search/title?page=${
-                  Number(current_page) + 1
-                }`
-              );
-            } else {
-              context.showMore(next_page);
-            }
+            context.showMore(page + 1);
           }}
         >
           Показать еще

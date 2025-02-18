@@ -11,11 +11,9 @@ const Poster = () => {
     <div id="poster" className={styles.poster}>
       <img
         src={
-          context.movieData.big_poster ||
-          context.movieData.small_poster ||
-          (context.movieData.images.length !== 0 &&
-            context.movieData.images[0].src) ||
-          "/no_image.png"
+          context.movieData.poster_path
+            ? `/images${context.movieData.poster_path}`
+            : "/no_image.png"
         }
       />
     </div>

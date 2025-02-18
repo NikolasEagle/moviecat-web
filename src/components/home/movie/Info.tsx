@@ -18,20 +18,19 @@ const Info = () => {
   return (
     <div className={styles.movie_info}>
       <h2>
-        {context.movieData.name_russian || context.movieData.name_original}
-        {context.movieData.year || context.movieData.year_start
-          ? context.movieData.year ||
-            `(${context.movieData.year_start}-${context.movieData.year_end})`
-          : null}
+        {context.movieData.title} {context.movieData.release_date}
       </h2>
 
-      {context.movieData.country_ru && (
+      {context.movieData.production_countries.length > 0 ? (
         <p>
-          <strong>Страна</strong>: {context.movieData.country_ru}
+          <strong>Страна</strong>:{" "}
+          {context.movieData.production_countries
+            .map((country) => country["name"])
+            .join(", ")}
         </p>
-      )}
+      ) : null}
 
-      <div>
+      {/*<div>
         {context.movieData.persons.filter(
           (person) => person.profession.profession_id === "director"
         ).length ? (
@@ -69,9 +68,9 @@ const Info = () => {
               .join(", ")}
           </p>
         ) : null}
-      </div>
+            </div>*/}
 
-      {context.movieData.budget && (
+      {context.movieData.budget !== 0 && (
         <p>
           <strong>Бюджет</strong>: {context.movieData.budget}
         </p>
@@ -80,7 +79,7 @@ const Info = () => {
       {context.movieData.genres.length && (
         <p>
           <strong>Жанр: </strong>
-          {context.movieData.genres.map((genre) => genre.name_ru).join(", ")}
+          {context.movieData.genres.map((genre) => genre["name"]).join(", ")}
         </p>
       )}
 

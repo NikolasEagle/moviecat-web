@@ -30,23 +30,15 @@ const Movie = () => {
   let { movie_id } = useParams();
 
   let [movieData, setMovieData] = useState<contextType["movieData"]>({
-    name_russian: null,
-    name_original: null,
-    year: null,
-    year_start: null,
-    year_end: null,
-    country_ru: null,
+    id: movie_id,
+    title: null,
+    release_date: null,
+    production_countries: [],
     budget: null,
-    persons: [],
     genres: [],
-    description: null,
-    kinopoisk_id: null,
-    big_poster: null,
-    small_poster: null,
-    age_restriction: null,
-    rating_kp: null,
-    rating_imdb: null,
-    images: [],
+    overview: null,
+    poster_path: null,
+    vote_average: null,
   });
 
   let [movieContent, setMovieContent] = useState<React.JSX.Element>(
@@ -77,7 +69,7 @@ const Movie = () => {
   }
 
   return (
-    <MovieContext.Provider value={{ movieData, movie_id }}>
+    <MovieContext.Provider value={{ movieData }}>
       {movieContent}
     </MovieContext.Provider>
   );
