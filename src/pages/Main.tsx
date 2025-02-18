@@ -19,10 +19,13 @@ import Error from "../components/additional/Error.tsx";
 
 type Data = {
   id: number;
+  name: string | null;
   title: string | null;
+  first_air_date: string | null;
   release_date: string | null;
   vote_average: number | null;
   poster_path: string | null;
+  media_type: string | null;
 };
 
 const Main = () => {

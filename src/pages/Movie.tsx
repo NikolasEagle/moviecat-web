@@ -27,11 +27,13 @@ const Movie = () => {
     generatePage();
   }, []);
 
-  let { movie_id } = useParams();
+  let { media_type, movie_id } = useParams();
 
   let [movieData, setMovieData] = useState<contextType["movieData"]>({
-    id: movie_id,
+    id: null,
+    name: null,
     title: null,
+    first_air_date: null,
     release_date: null,
     production_countries: [],
     budget: null,
@@ -46,10 +48,16 @@ const Movie = () => {
   );
 
   async function generatePage() {
-    let url = `/api/movie/${movie_id}`;
+    let url;
+
+    if (media_type === "tv") {
+      url = `/api/tv/${movie_id}`;
+    } else if (media_type === "movie") {
+      url = `/api/movie/${movie_id}`;
+    }
 
     try {
-      let response: Response = await fetch(url);
+      let response = await fetch(url);
 
       let body: contextType["movieData"] = await response.json();
 

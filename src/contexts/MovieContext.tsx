@@ -3,7 +3,9 @@ import React from "react";
 export type contextType = {
   movieData: {
     id: number | null;
+    name: string | null;
     title: string | null;
+    first_air_date: string | null;
     release_date: string | null;
     production_countries: [];
     budget: number | null;

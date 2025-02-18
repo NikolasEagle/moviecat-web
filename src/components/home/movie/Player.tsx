@@ -13,8 +13,6 @@ const Player = () => {
 
   const contextDevice = useContext(DeviceContext) as contextDevice;
 
-  console.log(context.movieData.title);
-
   return !contextDevice.tv ? (
     <KinoboxPlayer tmdbId={context.movieData.id} />
   ) : null;

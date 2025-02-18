@@ -13,13 +13,19 @@ type Props = {
   movie: {
     id: number;
 
+    name: string | null;
+
     title: string | null;
+
+    first_air_date: string | null;
 
     release_date: string | null;
 
     vote_average: number | null;
 
     poster_path: string | null;
+
+    media_type: string | null;
   };
 };
 
@@ -45,7 +51,9 @@ const MovieCard = ({ index, movie }: Props) => {
           ? styles.card
           : [styles["card"], styles["card_tv"]].join(" ")
       }
-      onClick={() => navigate(`/movies/${movie.id}`)}
+      onClick={() => {
+        navigate(`/movies/${movie.media_type}/${movie.id}`);
+      }}
     >
       <div className={styles.top_panel}>
         {movie.release_date && (
@@ -57,6 +65,17 @@ const MovieCard = ({ index, movie }: Props) => {
             }
           >
             {movie.release_date.split("-")[0]}
+          </div>
+        )}
+        {movie.first_air_date && (
+          <div
+            className={
+              !contextDevice.tv
+                ? styles.year
+                : [styles["year"], styles["year_tv"]].join(" ")
+            }
+          >
+            {movie.first_air_date.split("-")[0]}
           </div>
         )}
         {movie.vote_average && (
@@ -87,7 +106,7 @@ const MovieCard = ({ index, movie }: Props) => {
             : [styles["name"], styles["name_tv"]].join(" ")
         }
       >
-        {movie.title}
+        {movie.title || movie.name}
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const Description = () => {
           : [styles["description"], styles["description_tv"]].join(" ")
       }
     >
-      {context.movieData.description}
+      {context.movieData.overview}
     </p>
   );
 };

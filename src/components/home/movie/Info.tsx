@@ -15,11 +15,15 @@ const Info = () => {
 
   const contextDevice = useContext(DeviceContext) as contextDevice;
 
+  console.log(context.movieData.budget);
+
   return (
     <div className={styles.movie_info}>
-      <h2>
-        {context.movieData.title} {context.movieData.release_date}
-      </h2>
+      <h2>{context.movieData.title || context.movieData.name} </h2>
+      <h3>
+        {context.movieData.release_date?.split("-").reverse().join(".") ||
+          context.movieData.first_air_date?.split("-").reverse().join(".")}
+      </h3>
 
       {context.movieData.production_countries.length > 0 ? (
         <p>
@@ -70,11 +74,11 @@ const Info = () => {
         ) : null}
             </div>*/}
 
-      {context.movieData.budget !== 0 && (
+      {context.movieData.budget ? (
         <p>
           <strong>Бюджет</strong>: {context.movieData.budget}
         </p>
-      )}
+      ) : null}
 
       {context.movieData.genres.length && (
         <p>
