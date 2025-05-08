@@ -21,11 +21,16 @@
     "react-helmet": "^6.1.0",
     "react-player": "^2.16.0",
     "react-router-dom": "^6.27.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
     "react-tv-player": "^1.1.7",
-    "sass": "^1.82.0",
-    "typescript": "^5.7.2",
+    "sass": "^1.87.0",
+    "typescript": "5.7.2",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,5 +59,5 @@
   "devDependencies": {
     "ajv": "^8.17.1"
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "http://moviecat-backend:8000"
 }
