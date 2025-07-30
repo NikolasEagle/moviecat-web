@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import styles from "./Player.module.scss";
+
 import DeviceContext, {
   contextDevice,
 } from "../../../contexts/DeviceContext.tsx";
@@ -12,7 +14,7 @@ const Player = () => {
   const contextDevice = useContext(DeviceContext) as contextDevice;
 
   return !contextDevice.tv ? (
-    <iframe src={`https://mars.allarknow.online/?tmdb=${context.movieData.id}&token=de19b0b4e75ce15a9be8e63c0f5858`} width="100%" height="370" frameBorder="0" allowFullScreen allow="autoplay *; fullscreen *"></iframe>
+    <iframe className={styles.player} src={`https://mars.allarknow.online/?tmdb=${context.movieData.id}&token=de19b0b4e75ce15a9be8e63c0f5858`} width="100%" height="370" frameBorder="0" allowFullScreen allow="autoplay *; fullscreen *"></iframe>
   ) : null;
 };
 
