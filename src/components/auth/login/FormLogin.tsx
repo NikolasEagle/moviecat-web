@@ -36,9 +36,9 @@ const FormLogin = () => {
           onChange={(event) => context.setPassword(event.target.value)}
         />
         <button type="submit">Войти</button>
-        <p>
+        {/*<p>
           Не зарегистрированы? <Link to="/register">Регистрация</Link>
-        </p>
+        </p>*/}
       </form>
     </div>
   );
