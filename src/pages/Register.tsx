@@ -56,6 +56,13 @@ const Register = () => {
             <Error message={"Пользователь с таким email уже существует"} />
           </>
         );
+      } else if (response.status === 400) {
+        setContent(
+          <>
+            <FormRegister />
+            <Error message={"Неверный формат данных"} />
+          </>
+        );
       } else if (response.status === 500) {
         setContent(
           <>
